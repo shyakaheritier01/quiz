@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Personality Quiz</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .quiz-box {
+      background: #fff0f5;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #d63384;
+    }
+
+    .question {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .result {
+      font-size: 22px;
+      color: #6f42c1;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <h1>💘 What Kind of Lover Are You?</h1>
+    <div id="question" class="question"></div>
+    <div id="answers"></div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "What do you value most in a relationship?",
+        answers: ["Trust", "Passion", "Loyalty", "Freedom"]
+      },
+      {
+        text: "How do you show love?",
+        answers: ["Hugs & kisses", "Surprises", "Words", "Spending time"]
+      },
+      {
+        text: "Your ideal date is:",
+        answers: ["Candlelight dinner", "Adventure trip", "Movie night", "Picnic"]
+      },
+      {
+        text: "Choose a romantic color:",
+        answers: ["Red", "Pink", "Purple", "White"]
+      },
+      {
+        text: "If love was a food, what would it be?",
+        answers: ["Pizza - warm & cheesy", "Chocolate - sweet & deep", "Hot pepper - spicy & risky", "Ice cream - cool but melts"]
+      },
+      {
+        text: "Which song best matches your love vibe?",
+        answers: ["Love on Top", "Stay With Me", "Let Me Love You", "Single Ladies"]
+      },
+      {
+        text: "Pick a pet that describes your love style:",
+        answers: ["Dog - loyal & warm", "Cat - mysterious & cool", "Parrot - talks a lot", "Fish - calm & peaceful"]
+      },
+      {
+        text: "How dramatic are you in love?",
+        answers: ["Oscar-winning", "Just a little extra", "Chill & drama-free", "Romantic comedy level"]
+      },
+      {
+        text: "How often do you text your crush?",
+        answers: ["Every hour", "Once a day", "Only when they text first", "I stalk silently"]
+      }
+    ];
+
+    const randomize = arr => arr.sort(() => Math.random() - 0.5);
+
+    let current = 0;
+    let score = [];
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById("question").innerText = q.text;
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+      randomize(q.answers).forEach(answer => {
+        const btn = document.createElement("button");
+        btn.innerText = answer;
+        btn.onclick = () => {
+          score.push(answer);
+          current++;
+          if (current < questions.length) {
+            showQuestion();
+          } else {
+            showResult();
+          }
+        };
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      const result = document.getElementById("result");
+      const loveTypes = [
+        "The Romantic - Your heart writes poetry!",
+        "The Loyal One - You ride or die!",
+        "The Adventurer - Love is your next mission!",
+        "The Sweetheart - Hugs, cookies, and good vibes!",
+        "The Mysterious One - You’re love’s best kept secret 😏",
+        "The Meme Lover - You flirt with stickers 😂"
+      ];
+      const type = loveTypes[Math.floor(Math.random() * loveTypes.length)];
+      result.innerHTML = `💖 You are: <strong>${type}</strong><br><br>📲 <em>Put this on your WhatsApp status and let others discover their love behavior too!</em>`;
+      document.getElementById("question").style.display = "none";
+      document.getElementById("answers").style.display = "none";
+    }
+
+    current = 0;
+    showQuestion();
+  </script>
+</body>
+</html>
