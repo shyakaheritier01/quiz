@@ -1,146 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Personality Quiz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landloard - Rent Houses Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      font-family: 'Arial', sans-serif;
-      color: #333;
-      text-align: center;
-      padding: 40px;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: #f7f7f7;
     }
-
-    .quiz-box {
-      background: #fff0f5;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      max-width: 500px;
+    footer {
+      background-color: #0a3c90;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    header {
+      background: #0a3c90;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    nav {
+      background: #08306b;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
       margin: auto;
     }
-
-    h1 {
-      color: #d63384;
+    .form-section, .product-listing, .map-section, .subscribe-section, .visit-section, #listings {
+      margin-bottom: 3rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    .question {
-      font-size: 20px;
-      margin: 20px 0;
+    .form-section h2, .product-listing h2, .map-section h2, .subscribe-section h2, .visit-section h2, #listings h2 {
+      margin-bottom: 1rem;
+      color: #0a3c90;
     }
-
-    button {
-      background-color: #ff69b4;
-      border: none;
+    form input, form textarea, form select {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    form button, .filters button {
+      background: #0a3c90;
       color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      margin: 10px;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
       cursor: pointer;
     }
-
-    .result {
-      font-size: 22px;
-      color: #6f42c1;
-      margin-top: 30px;
+    .product {
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .product img {
+      width: 500px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .product-details h3 {
+      margin: 0 0 0.5rem;
+      color: #333;
+    }
+    .product-details p {
+      margin: 0.25rem 0;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 8px;
+    }
+    .plans {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .plan {
+      flex: 1;
+      min-width: 250px;
+      padding: 1rem;
+      background: #f0f4ff;
+      border-radius: 8px;
+      border: 1px solid #d0dfff;
+    }
+    .plan h3 {
+      color: #0a3c90;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .filters input, .filters select {
+      flex: 1;
+      min-width: 200px;
+    }
+    .house-card {
+      padding: 1rem;
+      background: #f0f4ff;
+      border: 1px solid #cce;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .featured {
+      background-color: #fff5e6;
+      border-left: 5px solid #ff9900;
     }
   </style>
 </head>
 <body>
-  <div class="quiz-box">
-    <h1>💘 What Kind of Lover Are You?</h1>
-    <div id="question" class="question"></div>
-    <div id="answers"></div>
-    <div class="result" id="result"></div>
-  </div>
+  <header>
+    <h1>Landloard</h1>
+    <p>Post your house and let renters find it easily</p>
+  </header>
+
+  <nav>
+     <a href="#auth">Login/Register</a>
+     <a href="#productForm">Post House</a>
+     <a href="#productContainer">View Houses</a>
+     <a href="#listings">Filter Listings</a>
+     <a href="#visit">Book Visit</a>
+     <a href="#map">Map</a>
+     <a href="#subscribe">Plans</a>
+     <a href="#contact-help">Contact</a>
+  </nav>
+
+  <main>
+    <!-- Login/Register -->
+    <section class="form-section" id="auth">
+      <h2>Login / Register</h2>
+      <form id="authForm">
+        <select id="role" required>
+          <option value="">Select Role</option>
+          <option value="landlord">Landlord</option>
+          <option value="tenant">Tenant</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <!-- My Dashboard -->
+    <section class="form-section" id="dashboard" style="display: none;">
+      <h2>My Dashboard</h2>
+      <p id="userInfo"></p>
+      <p><strong>Status:</strong> You can manage bookings, view feedback, or post a house.</p>
+    </section>
+
+    <!-- Post House -->
+    <section class="form-section" id="productForm">
+      <h2>Post Your House</h2>
+      <form>
+        <input type="text" id="title" placeholder="House Title" required>
+        <input type="number" id="price" placeholder="Rental Price (RWF)" required>
+        <input type="file" id="image" accept="image/*" required>
+        <textarea id="description" placeholder="House Description" required></textarea>
+        <input type="text" id="contact" placeholder="Your Contact (Phone, WhatsApp, etc.)" required>
+        <button type="submit">Post House</button>
+      </form>
+    </section>
+
+    <!-- Display Houses -->
+    <section class="product-listing" id="productContainer">
+      <h2>Available Houses</h2>
+    </section>
+
+    <!-- Book Visit -->
+    <section class="visit-section" id="visit">
+      <h2>Book a Visit</h2>
+      <form>
+        <input type="text" placeholder="Your Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="text" placeholder="Phone Number" required>
+        <input type="text" placeholder="Preferred Location / House Name" required>
+        <input type="date" required>
+        <button type="submit">Book Visit</button>
+      </form>
+    </section>
+
+    <!-- Map -->
+    <section class="map-section" id="map">
+      <h2>Houses Location (Map)</h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15948.289877199443!2d29.625687187158204!3d-1.5033023023313903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dd8b7f8a29cf6f%3A0xc7e45c59bd3d9ac3!2sMusanze!5e0!3m2!1sen!2srw!4v1718900000000"
+        allowfullscreen
+        loading="lazy"></iframe>
+    </section>
+
+    <!-- Subscription -->
+    <section class="subscribe-section" id="subscribe">
+      <h2>Subscription Plans</h2>
+      <div class="plans">
+        <div class="plan">
+          <h3>Free Plan</h3>
+          <p>✔ Post 1 house</p>
+          <p>✔ Basic visibility</p>
+        </div>
+        <div class="plan">
+          <h3>Pro Plan - 5,000 RWF</h3>
+          <p>✔ Post up to 5 houses</p>
+          <p>✔ High visibility</p>
+          <p>✔ Appear on homepage</p>
+        </div>
+        <div class="plan">
+          <h3>Premium Plan - 10,000 RWF</h3>
+          <p>✔ Unlimited posts</p>
+          <p>✔ Featured listings</p>
+          <p>✔ Priority support</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listings with Filters -->
+    <section id="listings">
+      <h2>Available Houses</h2>
+      <div class="filters">
+        <input type="text" id="location-search" placeholder="Search by location" />
+        <button id="search-button">Search</button>
+        <select>
+          <option value="">All Types</option>
+          <option value="apartment">Apartment</option>
+          <option value="house">House</option>
+          <option value="studio">Studio</option>
+          <option value="Inzuyubucuruzi">Inzu y'ubucuruzi</option>
+          <option value="Urusengero">Urusengero</option>
+        </select>
+        <select>
+          <option value="">Price Range</option>
+          <option value="low">Under 100,000 RWF</option>
+          <option value="mid">100,000 - 300,000 RWF</option>
+          <option value="high">Above 300,000 RWF</option>
+        </select>
+      </div>
+      <div id="house-list">
+        <div class="house-card featured" data-location="Kigali">
+          <h3>⭐ Featured: Luxury Apartment in Kigali</h3>
+          <p>Price: 500,000 RWF</p>
+          <p>Location: Kigali</p>
+        </div>
+        <div class="house-card" data-location="Huye">
+          <h3>Modern House in Huye</h3>
+          <p>Price: 250,000 RWF</p>
+          <p>Location: Huye</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback -->
+    <section class="form-section" id="feedback">
+      <h2>Feedback / Rate a House</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <select required>
+          <option value="">Rate</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="1">⭐</option>
+        </select>
+        <textarea placeholder="Write your feedback..." required></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </section>
+
+    <!-- Contact / Help -->
+    <section class="form-section" id="contact-help">
+      <h2>Contact Us / Help</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your message or issue..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
 
   <script>
-    const questions = [
-      {
-        text: "What do you value most in a relationship?",
-        answers: ["Trust", "Passion", "Loyalty", "Freedom"]
-      },
-      {
-        text: "How do you show love?",
-        answers: ["Hugs & kisses", "Surprises", "Words", "Spending time"]
-      },
-      {
-        text: "Your ideal date is:",
-        answers: ["Candlelight dinner", "Adventure trip", "Movie night", "Picnic"]
-      },
-      {
-        text: "Choose a romantic color:",
-        answers: ["Red", "Pink", "Purple", "White"]
-      },
-      {
-        text: "If love was a food, what would it be?",
-        answers: ["Pizza - warm & cheesy", "Chocolate - sweet & deep", "Hot pepper - spicy & risky", "Ice cream - cool but melts"]
-      },
-      {
-        text: "Which song best matches your love vibe?",
-        answers: ["Love on Top", "Stay With Me", "Let Me Love You", "Single Ladies"]
-      },
-      {
-        text: "Pick a pet that describes your love style:",
-        answers: ["Dog - loyal & warm", "Cat - mysterious & cool", "Parrot - talks a lot", "Fish - calm & peaceful"]
-      },
-      {
-        text: "How dramatic are you in love?",
-        answers: ["Oscar-winning", "Just a little extra", "Chill & drama-free", "Romantic comedy level"]
-      },
-      {
-        text: "How often do you text your crush?",
-        answers: ["Every hour", "Once a day", "Only when they text first", "I stalk silently"]
+    const form = document.getElementById("productForm").querySelector("form");
+    const container = document.getElementById("productContainer");
+
+    let loggedInUser = null;
+    let postedHouse = false;
+
+    document.getElementById("authForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const role = document.getElementById("role").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email && password && role) {
+        loggedInUser = { role, email };
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("userInfo").innerText = `Logged in as ${role.toUpperCase()} (${email})`;
+
+        if (role === "landlord") {
+          postedHouse = false;
+        }
+
+        alert("Login successful!");
+      } else {
+        alert("Please fill all fields.");
       }
-    ];
+    });
 
-    const randomize = arr => arr.sort(() => Math.random() - 0.5);
+    form.addEventListener("submit", function (e) {
+      if (loggedInUser && loggedInUser.role === "landlord" && postedHouse) {
+        e.preventDefault();
+        alert("You can only post one house as a landlord.");
+        return;
+      }
 
-    let current = 0;
-    let score = [];
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const price = document.getElementById("price").value;
+      const imageFile = document.getElementById("image").files[0];
+      const description = document.getElementById("description").value;
+      const contact = document.getElementById("contact").value;
 
-    function showQuestion() {
-      const q = questions[current];
-      document.getElementById("question").innerText = q.text;
-      const answersDiv = document.getElementById("answers");
-      answersDiv.innerHTML = "";
-      randomize(q.answers).forEach(answer => {
-        const btn = document.createElement("button");
-        btn.innerText = answer;
-        btn.onclick = () => {
-          score.push(answer);
-          current++;
-          if (current < questions.length) {
-            showQuestion();
-          } else {
-            showResult();
-          }
-        };
-        answersDiv.appendChild(btn);
-      });
-    }
-
-    function showResult() {
-      const result = document.getElementById("result");
-      const loveTypes = [
-        "The Romantic - Your heart writes poetry!",
-        "The Loyal One - You ride or die!",
-        "The Adventurer - Love is your next mission!",
-        "The Sweetheart - Hugs, cookies, and good vibes!",
-        "The Mysterious One - You’re love’s best kept secret 😏",
-        "The Meme Lover - You flirt with stickers 😂"
-      ];
-      const type = loveTypes[Math.floor(Math.random() * loveTypes.length)];
-      result.innerHTML = `💖 You are: <strong>${type}</strong><br><br>📲 <em>Put this on your WhatsApp status and let others discover their love behavior too!</em>`;
-      document.getElementById("question").style.display = "none";
-      document.getElementById("answers").style.display = "none";
-    }
-
-    current = 0;
-    showQuestion();
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const productHTML = `
+          <div class="product">
+            <img src="${e.target.result}" alt="${title}">
+            <div class="product-details">
+              <h3>${title}</h3>
+              <p><strong>${price} RWF</strong></p>
+              <p>${description}</p>
+              <p>Contact: <strong>${contact}</strong></p>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML("afterbegin", productHTML);
+        form.reset();
+        if (loggedInUser && loggedInUser.role === "landlord") postedHouse = true;
+      };
+      reader.readAsDataURL(imageFile);
+    });
   </script>
+
+  <footer>
+    <p>&copy; 2025 Landloard. All rights reserved.</p>
+  </footer>
 </body>
 </html>
