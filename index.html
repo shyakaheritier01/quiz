@@ -2,377 +2,473 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landloard - Rent Houses Online</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DreamSpace Interiors</title>
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      background: #f7f7f7;
-    }
-    footer {
-      background-color: #0a3c90;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; background: #f4f5f7; color: #222; }
+
     header {
-      background: #0a3c90;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
       color: white;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    nav {
-      background: #08306b;
+      padding: 15px 30px;
       display: flex;
-      justify-content: center;
-      padding: 0.5rem;
-      gap: 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    nav a {
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a, .cart-button {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .form-section, .product-listing, .map-section, .subscribe-section, .visit-section, #listings {
-      margin-bottom: 3rem;
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .form-section h2, .product-listing h2, .map-section h2, .subscribe-section h2, .visit-section h2, #listings h2 {
-      margin-bottom: 1rem;
-      color: #0a3c90;
-    }
-    form input, form textarea, form select {
-      display: block;
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    form button, .filters button {
-      background: #0a3c90;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
+      padding: 8px 10px;
+      font-weight: 500;
+      transition: 0.3s;
       cursor: pointer;
     }
-    .product {
-      border-bottom: 1px solid #ccc;
-      padding: 1rem 0;
+
+    nav ul li a:hover, .cart-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+
+    .cart-button {
+      background: none;
+      border: none;
+    }
+
+    section {
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    section:nth-child(even) {
+      background: #ffffff;
+    }
+
+    .hero-text {
+      height: 90vh;
+      background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+        url('https://images.unsplash.com/photo-1600585154340-be6161d1a1e4') center/cover no-repeat;
+      color: white;
       display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      text-shadow: 1px 1px 4px black;
     }
-    .product img {
-      width: 500px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 5px;
+
+    .hero-text h1 {
+      font-size: 60px;
+      margin-bottom: 15px;
     }
-    .product-details h3 {
-      margin: 0 0 0.5rem;
+
+    .hero-text p {
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    .gallery, .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .gallery img,
+    .product-card img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover,
+    .product-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .product-card h4 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .product-card .description {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .product-card .price {
+      font-size: 18px;
+      color: #6a11cb;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .product-card button {
+      background: #6a11cb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .product-card button:hover {
+      background: #2575fc;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      text-align: left;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    form button {
+      background: #6a11cb;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #2575fc;
+    }
+
+    footer {
+      background: #1f1f1f;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 14px;
+      border-radius: 50%;
+      font-size: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      z-index: 2000;
+      transition: right 0.4s ease;
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-sidebar h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .cart-items {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+
+    .cart-item span {
+      display: block;
+      font-size: 15px;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .cart-sidebar button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #e74c3c;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cart-sidebar button:hover {
+      background: #c0392b;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
       color: #333;
     }
-    .product-details p {
-      margin: 0.25rem 0;
-    }
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-      border-radius: 8px;
-    }
-    .plans {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .plan {
-      flex: 1;
-      min-width: 250px;
-      padding: 1rem;
-      background: #f0f4ff;
-      border-radius: 8px;
-      border: 1px solid #d0dfff;
-    }
-    .plan h3 {
-      color: #0a3c90;
-    }
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .filters input, .filters select {
-      flex: 1;
-      min-width: 200px;
-    }
-    .house-card {
-      padding: 1rem;
-      background: #f0f4ff;
-      border: 1px solid #cce;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-    .featured {
-      background-color: #fff5e6;
-      border-left: 5px solid #ff9900;
+
+    p {
+      max-width: 800px;
+      margin: auto;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Landloard</h1>
-    <p>Post your house and let renters find it easily</p>
+    <div class="logo">DreamSpace</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button class="cart-button" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-     <a href="#auth">Login/Register</a>
-     <a href="#productForm">Post House</a>
-     <a href="#productContainer">View Houses</a>
-     <a href="#listings">Filter Listings</a>
-     <a href="#visit">Book Visit</a>
-     <a href="#map">Map</a>
-     <a href="#subscribe">Plans</a>
-     <a href="#contact-help">Contact</a>
-  </nav>
+  <section id="home" class="hero-text">
+    <h1>Transform Your Space</h1>
+    <p>Modern. Elegant. Comfortable.</p>
+  </section>
 
-  <main>
-    <!-- Login/Register -->
-    <section class="form-section" id="auth">
-      <h2>Login / Register</h2>
-      <form id="authForm">
-        <select id="role" required>
-          <option value="">Select Role</option>
-          <option value="landlord">Landlord</option>
-          <option value="tenant">Tenant</option>
-          <option value="admin">Admin</option>
-        </select>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-      </form>
-    </section>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We are a modern interior design company that blends luxury, creativity, and functionality.</p>
+  </section>
 
-    <!-- My Dashboard -->
-    <section class="form-section" id="dashboard" style="display: none;">
-      <h2>My Dashboard</h2>
-      <p id="userInfo"></p>
-      <p><strong>Status:</strong> You can manage bookings, view feedback, or post a house.</p>
-    </section>
+  <section id="services">
+    <h2>Our Services</h2>
+    <p>Home Design · Office Interiors · Furniture Planning · Renovations · Custom Decor</p>
+  </section>
 
-    <!-- Post House -->
-    <section class="form-section" id="productForm">
-      <h2>Post Your House</h2>
-      <form>
-        <input type="text" id="title" placeholder="House Title" required>
-        <input type="number" id="price" placeholder="Rental Price (RWF)" required>
-        <input type="file" id="image" accept="image/*" required>
-        <textarea id="description" placeholder="House Description" required></textarea>
-        <input type="text" id="contact" placeholder="Your Contact (Phone, WhatsApp, etc.)" required>
-        <button type="submit">Post House</button>
-      </form>
-    </section>
+  <section id="portfolio">
+    <h2>Portfolio Gallery</h2>
+    <div class="gallery">
+      <img src="https://source.unsplash.com/400x300/?interior,1" alt="Project 1" />
+      <img src="https://source.unsplash.com/400x300/?interior,2" alt="Project 2" />
+      <img src="https://source.unsplash.com/400x300/?interior,3" alt="Project 3" />
+      <img src="https://source.unsplash.com/400x300/?interior,4" alt="Project 4" />
+    </div>
+  </section>
 
-    <!-- Display Houses -->
-    <section class="product-listing" id="productContainer">
-      <h2>Available Houses</h2>
-    </section>
+  <section id="team">
+    <h2>Meet the Team</h2>
+    <p>Our team of creative professionals are passionate about turning your space into art.</p>
+  </section>
 
-    <!-- Book Visit -->
-    <section class="visit-section" id="visit">
-      <h2>Book a Visit</h2>
-      <form>
-        <input type="text" placeholder="Your Full Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <input type="text" placeholder="Phone Number" required>
-        <input type="text" placeholder="Preferred Location / House Name" required>
-        <input type="date" required>
-        <button type="submit">Book Visit</button>
-      </form>
-    </section>
-
-    <!-- Map -->
-    <section class="map-section" id="map">
-      <h2>Houses Location (Map)</h2>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15948.289877199443!2d29.625687187158204!3d-1.5033023023313903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dd8b7f8a29cf6f%3A0xc7e45c59bd3d9ac3!2sMusanze!5e0!3m2!1sen!2srw!4v1718900000000"
-        allowfullscreen
-        loading="lazy"></iframe>
-    </section>
-
-    <!-- Subscription -->
-    <section class="subscribe-section" id="subscribe">
-      <h2>Subscription Plans</h2>
-      <div class="plans">
-        <div class="plan">
-          <h3>Free Plan</h3>
-          <p>✔ Post 1 house</p>
-          <p>✔ Basic visibility</p>
-        </div>
-        <div class="plan">
-          <h3>Pro Plan - 5,000 RWF</h3>
-          <p>✔ Post up to 5 houses</p>
-          <p>✔ High visibility</p>
-          <p>✔ Appear on homepage</p>
-        </div>
-        <div class="plan">
-          <h3>Premium Plan - 10,000 RWF</h3>
-          <p>✔ Unlimited posts</p>
-          <p>✔ Featured listings</p>
-          <p>✔ Priority support</p>
-        </div>
+  <section id="shop">
+    <h2>Shop Our Products</h2>
+    <p>Explore our exclusive collection of stylish, hand-picked interior pieces for your dream space.</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://source.unsplash.com/300x200/?luxury,sofa" alt="Luxury Sofa">
+        <h4>Luxury Sofa</h4>
+        <p class="description">Comfortable and modern 3-seater sofa with velvet finish.</p>
+        <p class="price">$450</p>
+        <button onclick="addToCart('Luxury Sofa')">Add to Cart</button>
       </div>
-    </section>
 
-    <!-- Listings with Filters -->
-    <section id="listings">
-      <h2>Available Houses</h2>
-      <div class="filters">
-        <input type="text" id="location-search" placeholder="Search by location" />
-        <button id="search-button">Search</button>
-        <select>
-          <option value="">All Types</option>
-          <option value="apartment">Apartment</option>
-          <option value="house">House</option>
-          <option value="studio">Studio</option>
-          <option value="Inzuyubucuruzi">Inzu y'ubucuruzi</option>
-          <option value="Urusengero">Urusengero</option>
-        </select>
-        <select>
-          <option value="">Price Range</option>
-          <option value="low">Under 100,000 RWF</option>
-          <option value="mid">100,000 - 300,000 RWF</option>
-          <option value="high">Above 300,000 RWF</option>
-        </select>
+      <div class="product-card">
+        <img src="https://source.unsplash.com/300x200/?interior,lamp" alt="Modern Lamp">
+        <h4>Modern Lamp</h4>
+        <p class="description">Minimalist floor lamp with adjustable light settings.</p>
+        <p class="price">$80</p>
+        <button onclick="addToCart('Modern Lamp')">Add to Cart</button>
       </div>
-      <div id="house-list">
-        <div class="house-card featured" data-location="Kigali">
-          <h3>⭐ Featured: Luxury Apartment in Kigali</h3>
-          <p>Price: 500,000 RWF</p>
-          <p>Location: Kigali</p>
-        </div>
-        <div class="house-card" data-location="Huye">
-          <h3>Modern House in Huye</h3>
-          <p>Price: 250,000 RWF</p>
-          <p>Location: Huye</p>
-        </div>
+
+      <div class="product-card">
+        <img src="https://source.unsplash.com/300x200/?rug,decor" alt="Cozy Rug">
+        <h4>Cozy Rug</h4>
+        <p class="description">Soft, warm rug to elevate your living room ambiance.</p>
+        <p class="price">$120</p>
+        <button onclick="addToCart('Cozy Rug')">Add to Cart</button>
       </div>
-    </section>
 
-    <!-- Feedback -->
-    <section class="form-section" id="feedback">
-      <h2>Feedback / Rate a House</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <select required>
-          <option value="">Rate</option>
-          <option value="5">⭐⭐⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="1">⭐</option>
-        </select>
-        <textarea placeholder="Write your feedback..." required></textarea>
-        <button type="submit">Submit Feedback</button>
-      </form>
-    </section>
+      <div class="product-card">
+        <img src="https://source.unsplash.com/300x200/?wooden,table" alt="Wooden Table">
+        <h4>Wooden Table</h4>
+        <p class="description">Solid oak dining table, perfect for modern family spaces.</p>
+        <p class="price">$300</p>
+        <button onclick="addToCart('Wooden Table')">Add to Cart</button>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact / Help -->
-    <section class="form-section" id="contact-help">
-      <h2>Contact Us / Help</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your message or issue..." required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
+  <section id="blog">
+    <h2>Latest Blog Posts</h2>
+    <p>Tips, ideas, and design inspiration from experts in the interior design world.</p>
+  </section>
 
-  <script>
-    const form = document.getElementById("productForm").querySelector("form");
-    const container = document.getElementById("productContainer");
+  <section id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <p>“DreamSpace completely transformed my apartment. Beautiful, functional, and modern.” – Alice K.</p>
+  </section>
 
-    let loggedInUser = null;
-    let postedHouse = false;
-
-    document.getElementById("authForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const role = document.getElementById("role").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      if (email && password && role) {
-        loggedInUser = { role, email };
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("userInfo").innerText = `Logged in as ${role.toUpperCase()} (${email})`;
-
-        if (role === "landlord") {
-          postedHouse = false;
-        }
-
-        alert("Login successful!");
-      } else {
-        alert("Please fill all fields.");
-      }
-    });
-
-    form.addEventListener("submit", function (e) {
-      if (loggedInUser && loggedInUser.role === "landlord" && postedHouse) {
-        e.preventDefault();
-        alert("You can only post one house as a landlord.");
-        return;
-      }
-
-      e.preventDefault();
-      const title = document.getElementById("title").value;
-      const price = document.getElementById("price").value;
-      const imageFile = document.getElementById("image").files[0];
-      const description = document.getElementById("description").value;
-      const contact = document.getElementById("contact").value;
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const productHTML = `
-          <div class="product">
-            <img src="${e.target.result}" alt="${title}">
-            <div class="product-details">
-              <h3>${title}</h3>
-              <p><strong>${price} RWF</strong></p>
-              <p>${description}</p>
-              <p>Contact: <strong>${contact}</strong></p>
-            </div>
-          </div>
-        `;
-        container.insertAdjacentHTML("afterbegin", productHTML);
-        form.reset();
-        if (loggedInUser && loggedInUser.role === "landlord") postedHouse = true;
-      };
-      reader.readAsDataURL(imageFile);
-    });
-  </script>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Landloard. All rights reserved.</p>
+    <p>&copy; 2025 DreamSpace Interiors. All Rights Reserved.</p>
   </footer>
+
+  <a href="https://wa.me/250788123456" id="whatsapp-btn" title="Chat with us on WhatsApp">💬</a>
+
+  <div class="cart-sidebar" id="cart">
+    <h3>Your Cart</h3>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+    <button onclick="clearCart()">Clear Cart</button>
+  </div>
+
+  <script>
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (!name || !email || !message) {
+        alert("Please fill in all fields.");
+        return false;
+      }
+      alert("Message sent successfully!");
+      return true;
+    }
+
+    let cart = [];
+
+    function toggleCart() {
+      document.getElementById("cart").classList.toggle("open");
+    }
+
+    function addToCart(productName) {
+      let price = 100;
+      const found = cart.find(item => item.name === productName);
+      if (found) {
+        found.quantity += 1;
+      } else {
+        cart.push({ name: productName, price, quantity: 1 });
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartItemsDiv = document.getElementById("cart-items");
+      const cartTotalSpan = document.getElementById("cart-total");
+      const cartCount = document.getElementById("cart-count");
+
+      cartItemsDiv.innerHTML = "";
+      let total = 0;
+      let count = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+        cartItemsDiv.innerHTML += `
+          <div class="cart-item">
+            <span><strong>${item.name}</strong></span>
+            <span>Qty: ${item.quantity}</span>
+            <span>Price: $${item.price * item.quantity}</span>
+          </div>
+        `;
+      });
+
+      cartTotalSpan.textContent = total.toFixed(2);
+      cartCount.textContent = count;
+    }
+
+    function clearCart() {
+      cart = [];
+      updateCartUI();
+    }
+  </script>
 </body>
 </html>
