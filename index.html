@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My CV </title>
+    <title>Student CV Builder | Create Professional Resumes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -761,7 +761,7 @@
                         <h3>Personal Information</h3>
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" class="form-control" placeholder="Ngabo Fils">
+                            <input type="text" id="fullName" class="form-control" placeholder="John Doe">
                             <span class="helper-text">Your full name as it should appear on your CV</span>
                         </div>
                         
@@ -782,7 +782,17 @@
                             <span class="helper-text">City and country are usually enough</span>
                         </div>
                         
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <input type="url" id="linkedin" class="form-control" placeholder="https://linkedin.com/in/username">
+                        </div>
                         
+                        <div class="form-group">
+                            <label for="github">GitHub Profile</label>
+                            <input type="url" id="github" class="form-control" placeholder="https://github.com/username">
+                            <span class="helper-text">Important for technical roles</span>
+                        </div>
+                    </div>
                     
                     <!-- Step 2: Education -->
                     <div class="form-step" id="step2">
@@ -923,7 +933,7 @@
                     <!-- CV content will be generated here dynamically -->
                     <div class="cv-header">
                         <div>
-                            <h1 class="name" id="previewName">Ngabo Fils</h1>
+                            <h1 class="name" id="previewName">John Doe</h1>
                             <div class="contact-info">
                                 <div class="contact-item">
                                     <i class="fas fa-envelope"></i>
@@ -1040,10 +1050,12 @@
                 }
             ],
             formData: {
-                fullName: 'Ngabo Fils',
+                fullName: 'John Doe',
                 email: 'john.doe@example.com',
                 phone: '+1 234 567 890',
                 address: 'New York, USA',
+                linkedin: 'linkedin.com/in/johndoe',
+                github: 'github.com/johndoe',
                 school: 'University of Example',
                 course: 'Bachelor of Computer Science',
                 year: '2020 - 2024',
