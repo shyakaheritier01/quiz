@@ -3,1004 +3,1619 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brew Haven | Artisan Coffee Shop</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>My CV </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* ===== Global Styles ===== */
-        :root {
-            --primary: #6F4E37; /* Coffee brown */
-            --secondary: #C4A484; /* Latte color */
-            --accent: #D2B48C; /* Tan */
-            --light: #F5F5DC; /* Beige */
-            --dark: #3E2723; /* Dark brown */
-            --text: #5D4037; /* Brown text */
-            --white: #FFFFFF;
-            --black: #000000;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
+        /* CSS Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --success: #4bb543;
+            --warning: #f0ad4e;
+            --danger: #d9534f;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            color: var(--text);
-            background-color: var(--light);
+            color: var(--dark);
+            background-color: #f5f7ff;
+            transition: var(--transition);
+        }
+
+        body.dark-mode {
+            background-color: #121826;
+            color: #e9ecef;
         }
 
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        section {
-            padding: 80px 0;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--dark);
-            margin-bottom: 1rem;
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
 
         h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        body.dark-mode header {
+            background-color: #1e293b;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        p {
-            margin-bottom: 1rem;
+        .logo i {
+            font-size: 2rem;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 992px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+
+        body.dark-mode .form-section {
+            background-color: #1e293b;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            margin-bottom: 2rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background-color: var(--gray-light);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .progress-bar-container {
+            background-color: #334155;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        body.dark-mode .form-navigation {
+            border-top-color: #334155;
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
+            padding: 0.8rem 1.5rem;
             border-radius: var(--border-radius);
-            font-weight: 600;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
             background-color: var(--primary);
-            color: var(--white);
-            border: 2px solid var(--primary);
+            color: white;
         }
 
         .btn-primary:hover {
-            background-color: transparent;
-            color: var(--primary);
+            background-color: var(--secondary);
         }
 
         .btn-secondary {
-            background-color: var(--secondary);
+            background-color: var(--gray-light);
             color: var(--dark);
-            border: 2px solid var(--secondary);
+        }
+
+        body.dark-mode .btn-secondary {
+            background-color: #334155;
+            color: #e9ecef;
         }
 
         .btn-secondary:hover {
+            background-color: var(--gray);
+            color: white;
+        }
+
+        .btn-outline {
             background-color: transparent;
-            color: var(--secondary);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-        }
-
-        /* ===== Header & Navigation ===== */
-        header {
-            background-color: var(--white);
-            box-shadow: var(--box-shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+            border: 2px solid var(--primary);
             color: var(--primary);
-            font-family: 'Playfair Display', serif;
         }
 
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            position: relative;
-            color: var(--dark);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+        .btn-outline:hover {
             background-color: var(--primary);
-            transition: var(--transition);
+            color: white;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
+        /* Form Steps */
+        .form-step {
             display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
+            animation: fadeIn 0.5s ease;
         }
 
-        /* ===== Hero Section ===== */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 180px 0 100px;
-            text-align: center;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .hero h1 {
-            color: var(--white);
-            margin-bottom: 20px;
-            font-size: 3.5rem;
-        }
-
-        .hero p {
-            color: var(--light);
-            max-width: 700px;
-            margin: 0 auto 30px;
-            font-size: 1.2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        /* ===== About Section ===== */
-        .about {
-            background-color: var(--white);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            text-align: left;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image img {
-            box-shadow: var(--box-shadow);
-        }
-
-        .about-badge {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 15px 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        /* ===== Menu Section ===== */
-        .menu {
-            background-color: var(--light);
-        }
-
-        .menu-categories {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .menu-category-btn {
-            padding: 10px 20px;
-            background-color: var(--white);
-            border: 1px solid var(--secondary);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .menu-category-btn.active,
-        .menu-category-btn:hover {
-            background-color: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        .menu-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .menu-item {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-        }
-
-        .menu-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .menu-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .menu-item-content {
-            padding: 20px;
-        }
-
-        .menu-item-title {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .menu-item-price {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* ===== Gallery Section ===== */
-        .gallery {
-            background-color: var(--white);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            height: 250px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* ===== Reservation Section ===== */
-        .reservation {
-            background-color: var(--light);
-        }
-
-        .reservation-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .reservation-image img {
-            box-shadow: var(--box-shadow);
-        }
-
-        .reservation-form {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
+        .form-step.active {
             display: block;
-            margin-bottom: 8px;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--gray-light);
+            color: var(--gray);
             font-weight: 600;
+        }
+
+        body.dark-mode .step {
+            background-color: #334155;
+        }
+
+        .step.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .step.completed {
+            background-color: var(--success);
+            color: white;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--gray-light);
             border-radius: var(--border-radius);
-            font-family: inherit;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
             transition: var(--transition);
+        }
+
+        body.dark-mode .form-control {
+            background-color: #334155;
+            border-color: #475569;
+            color: #e9ecef;
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
 
-        /* ===== Contact Section ===== */
-        .contact {
-            background-color: var(--light);
+        .helper-text {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+            display: block;
         }
 
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        body.dark-mode .helper-text {
+            color: #94a3b8;
         }
 
-        .contact-info h3 {
-            margin-bottom: 20px;
+        /* Dynamic Lists */
+        .dynamic-list {
+            margin-top: 0.5rem;
         }
 
-        .contact-details {
-            margin-bottom: 30px;
-        }
-
-        .contact-item {
+        .list-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            background-color: var(--gray-light);
+            padding: 0.8rem 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 0.5rem;
         }
 
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            color: var(--white);
-            border-radius: 50%;
+        body.dark-mode .list-item {
+            background-color: #334155;
+        }
+
+        .list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .list-actions {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
+            gap: 0.5rem;
         }
 
-        .contact-form {
-            background-color: var(--white);
-            padding: 30px;
+        .list-action-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .list-action-btn:hover {
+            color: var(--danger);
+        }
+
+        .add-btn {
+            margin-top: 1rem;
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .add-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Preview Section */
+        .preview-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        body.dark-mode .preview-section {
+            background-color: #1e293b;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        body.dark-mode .template-btn {
+            background-color: #334155;
+            border-color: #475569;
+            color: #e9ecef;
+        }
+
+        .template-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .template-btn.active {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .preview-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* CV Preview Styles */
+        .cv-preview {
+            background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-        }
-
-        /* ===== Footer ===== */
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h3 {
-            color: var(--white);
-            margin-bottom: 20px;
+            min-height: 842px; /* A4 height */
+            padding: 2rem;
+            overflow: hidden;
             position: relative;
-            padding-bottom: 10px;
         }
 
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary);
+        body.dark-mode .cv-preview {
+            background-color: white;
+            color: #212529;
         }
 
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: var(--secondary);
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-
-        .social-links {
+        /* Template 1 - Modern */
+        .template-1 .cv-header {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 1.5rem;
         }
 
-        .social-links a {
+        .template-1 .name {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .template-1 .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-1 .contact-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            transition: var(--transition);
+            gap: 0.5rem;
         }
 
-        .social-links a:hover {
-            background-color: var(--secondary);
-            color: var(--dark);
+        .template-1 .section-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-light);
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .footer-bottom {
+        .template-1 .education-item, 
+        .template-1 .experience-item, 
+        .template-1 .project-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .template-1 .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .template-1 .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .template-1 .skill-tag {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Template 2 - Classic */
+        .template-2 .cv-header {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--secondary);
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--dark);
+            margin-bottom: 1.5rem;
         }
 
-        /* ===== Responsive Design ===== */
-        @media (max-width: 992px) {
-            .about-content,
-            .reservation-container,
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .about-text h2,
-            .reservation-form,
-            .contact-form {
-                text-align: center;
-            }
-
-            .about-image,
-            .reservation-image {
-                order: -1;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
+        .template-2 .name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
+        .template-2 .title {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .template-2 .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-2 .section-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .template-2 .education-item, 
+        .template-2 .experience-item, 
+        .template-2 .project-item {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--gray-light);
+        }
+
+        .template-2 .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .template-2 .skill-tag {
+            background-color: var(--gray-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        /* Template 3 - Creative */
+        .template-3 .cv-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .template-3 .name-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+        }
+
+        .template-3 .name {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-3 .contact-section {
+            padding-top: 0.5rem;
+        }
+
+        .template-3 .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .template-3 .section-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .template-3 .education-item, 
+        .template-3 .experience-item, 
+        .template-3 .project-item {
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background-color: rgba(67, 97, 238, 0.05);
+            border-radius: var(--border-radius);
+        }
+
+        .template-3 .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .template-3 .skill-tag {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-light);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode footer {
+            border-top-color: #334155;
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 576px) {
             h1 {
-                font-size: 2.2rem;
-            }
-
-            h2 {
                 font-size: 2rem;
             }
-
-            section {
-                padding: 60px 0;
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .main-layout {
+                gap: 1.5rem;
+                padding: 1.5rem 0;
+            }
+            
+            .form-section, .preview-section {
+                padding: 1.5rem;
+            }
+            
+            .cv-preview {
+                padding: 1.5rem;
+                min-height: auto;
+            }
+            
+            .preview-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .template-3 .cv-header {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* ===== Animation Classes ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease forwards;
+        @media print {
+            header, .form-section, .preview-header, .template-selector, .preview-actions, footer {
+                display: none !important;
+            }
+            
+            .preview-section {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .cv-preview {
+                box-shadow: none;
+                min-height: auto;
+            }
+            
+            body {
+                background-color: white !important;
+                color: #212529 !important;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
-            <nav class="navbar">
-                <div class="logo">Brew <span>Haven</span></div>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#reservation">Reservation</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Student CV Builder</span>
                 </div>
-            </nav>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1 class="fade-in">Artisan Coffee & Cozy Atmosphere</h1>
-            <p class="fade-in">Experience the finest handcrafted coffee in town at our welcoming coffee haven</p>
-            <div class="hero-buttons fade-in">
-                <a href="#menu" class="btn btn-primary">View Menu</a>
-                <a href="#reservation" class="btn btn-secondary">Book a Table</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Our Coffee Story</h2>
-                    <p>Founded in 2010, Brew Haven began as a small passion project between two coffee enthusiasts. What started as a dream to share exceptional coffee has grown into a beloved community gathering place.</p>
-                    <p>We source our beans directly from sustainable farms around the world, roasting them in-house to bring out their unique flavors. Our baristas are trained to craft each cup with precision and care.</p>
-                    <p>More than just a coffee shop, we're a place where connections are made, ideas are born, and moments are cherished.</p>
-                    <a href="#reservation" class="btn btn-primary" style="margin-top: 20px;">Visit Us</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee shop interior">
-                    <div class="about-badge">
-                        <h4>Since 2010</h4>
+    <main class="container">
+        <div class="main-layout">
+            <!-- Form Section -->
+            <section class="form-section">
+                <h2>Build Your CV</h2>
+                <p class="helper-text">Fill in your details step by step. Your CV preview updates in real-time.</p>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-info">
+                        <span>Progress</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" id="progressFill"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
-        <div class="container">
-            <h2>Our Menu</h2>
-            <div class="menu-categories">
-                <button class="menu-category-btn active">All</button>
-                <button class="menu-category-btn">Coffee</button>
-                <button class="menu-category-btn">Tea</button>
-                <button class="menu-category-btn">Breakfast</button>
-                <button class="menu-category-btn">Pastries</button>
-            </div>
-            <div class="menu-items">
-                <!-- Coffee Items -->
-                <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Espresso">
-                    <div class="menu-item-content">
-                        <div class="menu-item-title">
-                            <h3>Espresso</h3>
-                            <span class="menu-item-price">$3.50</span>
-                        </div>
-                        <p>A concentrated coffee beverage brewed by forcing hot water under pressure through finely ground coffee.</p>
-                    </div>
+                
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active" data-step="1">1</div>
+                    <div class="step" data-step="2">2</div>
+                    <div class="step" data-step="3">3</div>
+                    <div class="step" data-step="4">4</div>
+                    <div class="step" data-step="5">5</div>
                 </div>
-                <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cappuccino">
-                    <div class="menu-item-content">
-                        <div class="menu-item-title">
-                            <h3>Cappuccino</h3>
-                            <span class="menu-item-price">$4.50</span>
-                        </div>
-                        <p>Espresso with steamed milk and a silky layer of foam, often dusted with cocoa or cinnamon.</p>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Latte">
-                    <div class="menu-item-content">
-                        <div class="menu-item-title">
-                            <h3>Latte</h3>
-                            <span class="menu-item-price">$4.75</span>
-                        </div>
-                        <p>Espresso with a larger amount of steamed milk and a small amount of foam.</p>
-                    </div>
-                </div>
-                <!-- Pastry Items -->
-                <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Croissant">
-                    <div class="menu-item-content">
-                        <div class="menu-item-title">
-                            <h3>Butter Croissant</h3>
-                            <span class="menu-item-price">$3.25</span>
-                        </div>
-                        <p>Flaky, buttery pastry made with laminated dough, baked to golden perfection.</p>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cinnamon Roll">
-                    <div class="menu-item-content">
-                        <div class="menu-item-title">
-                            <h3>Cinnamon Roll</h3>
-                            <span class="menu-item-price">$4.00</span>
-                        </div>
-                        <p>Sweet rolled pastry with cinnamon sugar filling, topped with cream cheese icing.</p>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1602351447937-745cb720612f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blueberry Muffin">
-                    <div class="menu-item-content">
-                        <div class="menu-item-title">
-                            <h3>Blueberry Muffin</h3>
-                            <span class="menu-item-price">$3.50</span>
-                        </div>
-                        <p>Moist muffin packed with fresh blueberries and topped with sugar crust.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <h2>Our Coffee Haven</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee shop interior">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Barista making coffee">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee on table">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee beans">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Espresso shot">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Latte art">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reservation Section -->
-    <section class="reservation" id="reservation">
-        <div class="container">
-            <h2>Book Your Table</h2>
-            <div class="reservation-container">
-                <div class="reservation-image">
-                    <img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee shop seating area">
-                </div>
-                <div class="reservation-form">
-                    <h3>Reservation Details</h3>
-                    <form id="booking-form">
+                
+                <!-- Multi-Step Form -->
+                <form id="cvForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" id="step1">
+                        <h3>Personal Information</h3>
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="John Doe">
+                            <span class="helper-text">Your full name as it should appear on your CV</span>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="john.doe@example.com">
+                            <span class="helper-text">Use a professional email address</span>
                         </div>
+                        
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" required>
+                            <input type="tel" id="phone" class="form-control" placeholder="+1 234 567 890">
                         </div>
+                        
                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" id="date" class="form-control" required>
+                            <label for="address">Address</label>
+                            <input type="text" id="address" class="form-control" placeholder="City, Country">
+                            <span class="helper-text">City and country are usually enough</span>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="time">Time</label>
-                            <input type="time" id="time" class="form-control" required>
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <input type="url" id="linkedin" class="form-control" placeholder="https://linkedin.com/in/username">
                         </div>
+                        
                         <div class="form-group">
-                            <label for="guests">Number of Guests</label>
-                            <select id="guests" class="form-control" required>
-                                <option value="1">1 Person</option>
-                                <option value="2">2 People</option>
-                                <option value="3">3 People</option>
-                                <option value="4">4 People</option>
-                                <option value="5">5 People</option>
-                                <option value="6">6 People</option>
-                                <option value="7">7+ People</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="special-requests">Special Requests</label>
-                            <textarea id="special-requests" class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Book Table</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Visit Us</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Our Location</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <p>xxxxxxxxxxxxxxxx</p>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <p>0780264668</p>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <p>shyakaheritier01@gmail.com</p>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <p>Monday - Friday: 7am - 8pm<br>Saturday - Sunday: 8am - 6pm</p>
+                            <label for="github">GitHub Profile</label>
+                            <input type="url" id="github" class="form-control" placeholder="https://github.com/username">
+                            <span class="helper-text">Important for technical roles</span>
                         </div>
                     </div>
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    
+                    <!-- Step 2: Education -->
+                    <div class="form-step" id="step2">
+                        <h3>Education</h3>
+                        <div class="form-group">
+                            <label for="school">School/University</label>
+                            <input type="text" id="school" class="form-control" placeholder="University of Example">
+                            <span class="helper-text">Name of your educational institution</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="course">Course/Degree</label>
+                            <input type="text" id="course" class="form-control" placeholder="Bachelor of Computer Science">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="year">Year/Duration</label>
+                            <input type="text" id="year" class="form-control" placeholder="2020 - 2024">
+                            <span class="helper-text">Expected graduation year or study period</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Skills -->
+                    <div class="form-step" id="step3">
+                        <h3>Skills</h3>
+                        <p class="helper-text">Add your key skills. These will be displayed as tags on your CV.</p>
+                        
+                        <div class="form-group">
+                            <label for="skillInput">Add Skill</label>
+                            <div class="input-with-button">
+                                <input type="text" id="skillInput" class="form-control" placeholder="e.g., HTML, Communication, Python">
+                                <button type="button" class="btn add-btn" id="addSkillBtn">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <span class="helper-text">Add skills relevant to your target role</span>
+                        </div>
+                        
+                        <div class="dynamic-list" id="skillsList">
+                            <!-- Skills will be added here dynamically -->
+                            <div class="list-item">
+                                <span>Communication</span>
+                                <div class="list-actions">
+                                    <button type="button" class="list-action-btn remove-skill">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <span>Teamwork</span>
+                                <div class="list-actions">
+                                    <button type="button" class="list-action-btn remove-skill">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Projects -->
+                    <div class="form-step" id="step4">
+                        <h3>Projects</h3>
+                        <p class="helper-text">Showcase your academic or personal projects.</p>
+                        
+                        <div class="form-group">
+                            <label for="projectTitle">Project Title</label>
+                            <input type="text" id="projectTitle" class="form-control" placeholder="E-commerce Website">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectDescription">Description</label>
+                            <textarea id="projectDescription" class="form-control" rows="3" placeholder="Developed a fully functional e-commerce website with shopping cart and payment integration..."></textarea>
+                            <span class="helper-text">Describe your role and the technologies used</span>
+                        </div>
+                        
+                        <button type="button" class="btn add-btn" id="addProjectBtn">
+                            <i class="fas fa-plus"></i> Add Project
+                        </button>
+                        
+                        <div class="dynamic-list" id="projectsList">
+                            <!-- Projects will be added here dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5: Languages & Hobbies -->
+                    <div class="form-step" id="step5">
+                        <h3>Languages & Hobbies</h3>
+                        
+                        <div class="form-group">
+                            <label for="languages">Languages</label>
+                            <input type="text" id="languages" class="form-control" placeholder="English (Native), Spanish (Intermediate)">
+                            <span class="helper-text">List languages and your proficiency level</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hobbies">Hobbies & Interests</label>
+                            <textarea id="hobbies" class="form-control" rows="3" placeholder="Photography, Basketball, Reading, Travel"></textarea>
+                            <span class="helper-text">Add interests that showcase your personality</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Experience (Optional)</label>
+                            <textarea id="experience" class="form-control" rows="4" placeholder="Any internships, part-time jobs, or volunteer work"></textarea>
+                            <span class="helper-text">Include any relevant work experience</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Form Navigation Buttons -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" id="prevBtn" disabled>
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </section>
+            
+            <!-- Preview Section -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2>CV Preview</h2>
+                    <div class="cv-status">
+                        <span id="cvStatus" class="helper-text">Live Preview</span>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="contact-name">Name</label>
-                            <input type="text" id="contact-name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email</label>
-                            <input type="email" id="contact-email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-subject">Subject</label>
-                            <input type="text" id="contact-subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">Message</label>
-                            <textarea id="contact-message" class="form-control" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
+                
+                <!-- Template Selector -->
+                <div class="template-selector">
+                    <button class="template-btn active" data-template="1">Modern</button>
+                    <button class="template-btn" data-template="2">Classic</button>
+                    <button class="template-btn" data-template="3">Creative</button>
                 </div>
-            </div>
+                
+                <!-- CV Preview -->
+                <div class="cv-preview template-1" id="cvPreview">
+                    <!-- CV content will be generated here dynamically -->
+                    <div class="cv-header">
+                        <div>
+                            <h1 class="name" id="previewName">John Doe</h1>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <span id="previewEmail">john.doe@example.com</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span id="previewPhone">+1 234 567 890</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="previewAddress">New York, USA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="links">
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span id="previewLinkedin">linkedin.com/in/johndoe</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <span id="previewGithub">github.com/johndoe</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-body">
+                        <!-- Education Section -->
+                        <div class="section">
+                            <h3 class="section-title">Education</h3>
+                            <div class="education-item">
+                                <div class="item-header">
+                                    <strong id="previewSchool">University of Example</strong>
+                                    <span id="previewYear">2020 - 2024</span>
+                                </div>
+                                <div class="item-details" id="previewCourse">Bachelor of Computer Science</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skills Section -->
+                        <div class="section">
+                            <h3 class="section-title">Skills</h3>
+                            <div class="skills-list" id="previewSkills">
+                                <span class="skill-tag">Communication</span>
+                                <span class="skill-tag">Teamwork</span>
+                                <span class="skill-tag">Problem Solving</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Projects Section -->
+                        <div class="section">
+                            <h3 class="section-title">Projects</h3>
+                            <div class="projects-list" id="previewProjects">
+                                <div class="project-item">
+                                    <div class="item-header">
+                                        <strong>E-commerce Website</strong>
+                                    </div>
+                                    <div class="item-details">Developed a fully functional e-commerce website with shopping cart and payment integration using React and Node.js.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Experience Section -->
+                        <div class="section">
+                            <h3 class="section-title">Experience</h3>
+                            <div class="experience-details" id="previewExperience">
+                                <p>Summer Intern at Tech Solutions Inc. (2023)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Languages & Hobbies Section -->
+                        <div class="section">
+                            <h3 class="section-title">Languages & Hobbies</h3>
+                            <div class="languages-hobbies">
+                                <p><strong>Languages:</strong> <span id="previewLanguages">English (Native), Spanish (Intermediate)</span></p>
+                                <p><strong>Hobbies:</strong> <span id="previewHobbies">Photography, Basketball, Reading, Travel</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preview Actions -->
+                <div class="preview-actions">
+                    <button class="btn btn-outline" id="printBtn">
+                        <i class="fas fa-print"></i> Print CV
+                    </button>
+                    <button class="btn btn-primary" id="downloadBtn">
+                        <i class="fas fa-download"></i> Download as PDF
+                    </button>
+                </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Footer -->
+    </main>
+    
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Brew Haven</h3>
-                    <p>Artisan coffee shop dedicated to serving the finest coffee and creating a welcoming space for our community.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#reservation">Reservations</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Menu</h3>
-                    <ul class="footer-links">
-                        <li><a href="#menu">Coffee</a></li>
-                        <li><a href="#menu">Tea</a></li>
-                        <li><a href="#menu">Breakfast</a></li>
-                        <li><a href="#menu">Pastries</a></li>
-                        <li><a href="#menu">Specialty Drinks</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> xxxxxxxxxxx</li>
-                        <li><i class="fas fa-phone"></i> 0780264668</li>
-                        <li><i class="fas fa-envelope"></i> shyakaheritier01@gmail.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Brew Haven. All rights reserved.</p>
-            </div>
+            <p>Student CV Builder &copy; 2023 | Made for students by students</p>
+            <p class="helper-text">All data is stored locally in your browser. No information is sent to any server.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
+        // Main Application State
+        const state = {
+            currentStep: 1,
+            totalSteps: 5,
+            selectedTemplate: '1',
+            skills: ['Communication', 'Teamwork', 'Problem Solving'],
+            projects: [
+                {
+                    title: 'E-commerce Website',
+                    description: 'Developed a fully functional e-commerce website with shopping cart and payment integration using React and Node.js.'
+                }
+            ],
+            formData: {
+                fullName: 'John Doe',
+                email: 'john.doe@example.com',
+                phone: '+1 234 567 890',
+                address: 'New York, USA',
+                linkedin: 'linkedin.com/in/johndoe',
+                github: 'github.com/johndoe',
+                school: 'University of Example',
+                course: 'Bachelor of Computer Science',
+                year: '2020 - 2024',
+                languages: 'English (Native), Spanish (Intermediate)',
+                hobbies: 'Photography, Basketball, Reading, Travel',
+                experience: 'Summer Intern at Tech Solutions Inc. (2023)'
+            }
+        };
+
+        // DOM Elements
+        const stepElements = document.querySelectorAll('.form-step');
+        const stepIndicatorElements = document.querySelectorAll('.step');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+        const themeToggle = document.getElementById('themeToggle');
+        const templateButtons = document.querySelectorAll('.template-btn');
+        const cvPreview = document.getElementById('cvPreview');
+        const printBtn = document.getElementById('printBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const addSkillBtn = document.getElementById('addSkillBtn');
+        const skillInput = document.getElementById('skillInput');
+        const skillsList = document.getElementById('skillsList');
+        const addProjectBtn = document.getElementById('addProjectBtn');
+        const projectTitle = document.getElementById('projectTitle');
+        const projectDescription = document.getElementById('projectDescription');
+        const projectsList = document.getElementById('projectsList');
+        
+        // Initialize the application
+        function init() {
+            // Load saved data from localStorage
+            loadFromLocalStorage();
             
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-                
-                if (navLinks.classList.contains('show')) {
-                    navLinks.style.display = 'flex';
-                    navLinks.style.flexDirection = 'column';
-                    navLinks.style.position = 'absolute';
-                    navLinks.style.top = '80px';
-                    navLinks.style.left = '0';
-                    navLinks.style.width = '100%';
-                    navLinks.style.backgroundColor = 'white';
-                    navLinks.style.padding = '20px';
-                    navLinks.style.boxShadow = '0 10px 15px rgba(0,0,0,0.1)';
-                } else {
-                    navLinks.style.display = 'none';
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Update preview with initial data
+            updatePreview();
+            
+            // Calculate initial progress
+            updateProgress();
+            
+            // Update form fields with saved data
+            updateFormFields();
+        }
+
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Form navigation
+            prevBtn.addEventListener('click', goToPrevStep);
+            nextBtn.addEventListener('click', goToNextStep);
+            
+            // Theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Template selection
+            templateButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const template = btn.getAttribute('data-template');
+                    selectTemplate(template);
+                });
+            });
+            
+            // Form input changes (real-time updates)
+            document.querySelectorAll('#cvForm input, #cvForm textarea').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const field = e.target.id;
+                    const value = e.target.value;
+                    
+                    // Update state
+                    state.formData[field] = value;
+                    
+                    // Update preview
+                    updatePreviewField(field, value);
+                    
+                    // Save to localStorage
+                    saveToLocalStorage();
+                    
+                    // Update progress
+                    updateProgress();
+                });
+            });
+            
+            // Print CV
+            printBtn.addEventListener('click', printCV);
+            
+            // Download as PDF
+            downloadBtn.addEventListener('click', downloadAsPDF);
+            
+            // Add skill
+            addSkillBtn.addEventListener('click', addSkill);
+            skillInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addSkill();
                 }
             });
             
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        if (navLinks.classList.contains('show')) {
-                            navLinks.classList.remove('show');
-                            navLinks.style.display = 'none';
-                        }
+            // Add project
+            addProjectBtn.addEventListener('click', addProject);
+        }
+
+        // Navigation functions
+        function goToPrevStep() {
+            if (state.currentStep > 1) {
+                // Hide current step
+                document.getElementById(`step${state.currentStep}`).classList.remove('active');
+                stepIndicatorElements[state.currentStep - 1].classList.remove('active');
+                
+                // Update current step
+                state.currentStep--;
+                
+                // Show previous step
+                document.getElementById(`step${state.currentStep}`).classList.add('active');
+                stepIndicatorElements[state.currentStep - 1].classList.add('active');
+                
+                // Update navigation buttons
+                updateNavigationButtons();
+                
+                // Update progress
+                updateProgress();
+            }
+        }
+
+        function goToNextStep() {
+            if (state.currentStep < state.totalSteps) {
+                // Hide current step
+                document.getElementById(`step${state.currentStep}`).classList.remove('active');
+                stepIndicatorElements[state.currentStep - 1].classList.remove('active');
+                
+                // Update current step
+                state.currentStep++;
+                
+                // Show next step
+                document.getElementById(`step${state.currentStep}`).classList.add('active');
+                stepIndicatorElements[state.currentStep - 1].classList.add('active');
+                
+                // Mark previous step as completed
+                stepIndicatorElements[state.currentStep - 2].classList.add('completed');
+                
+                // Update navigation buttons
+                updateNavigationButtons();
+                
+                // Update progress
+                updateProgress();
+            }
+        }
+
+        function updateNavigationButtons() {
+            // Previous button
+            prevBtn.disabled = state.currentStep === 1;
+            
+            // Next button
+            if (state.currentStep === state.totalSteps) {
+                nextBtn.innerHTML = 'Finish <i class="fas fa-check"></i>';
+                nextBtn.removeEventListener('click', goToNextStep);
+                nextBtn.addEventListener('click', () => {
+                    alert('CV completed! You can now print or download it.');
+                });
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+                nextBtn.removeEventListener('click', () => {});
+                nextBtn.addEventListener('click', goToNextStep);
+            }
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            // Calculate progress based on filled fields
+            let filledFields = 0;
+            let totalFields = 0;
+            
+            // Count fields in current and previous steps
+            for (let i = 1; i <= state.currentStep; i++) {
+                const stepElement = document.getElementById(`step${i}`);
+                const inputs = stepElement.querySelectorAll('input, textarea');
+                
+                totalFields += inputs.length;
+                
+                inputs.forEach(input => {
+                    if (input.value.trim() !== '') {
+                        filledFields++;
                     }
                 });
-            });
-            
-            // Menu category filtering
-            const menuCategoryBtns = document.querySelectorAll('.menu-category-btn');
-            const menuItems = document.querySelectorAll('.menu-item');
-            
-            menuCategoryBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    menuCategoryBtns.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const category = this.textContent.trim();
-                    
-                    // Show/hide menu items based on category
-                    menuItems.forEach(item => {
-                        if (category === 'All') {
-                            item.style.display = 'block';
-                        } else {
-                            const itemCategory = item.querySelector('h3').textContent;
-                            if (itemCategory.includes(category)) {
-                                item.style.display = 'block';
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            });
-            
-            // Form submission
-            const bookingForm = document.getElementById('booking-form');
-            const contactForm = document.getElementById('contact-form');
-            
-            if (bookingForm) {
-                bookingForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your reservation! We will contact you shortly to confirm.');
-                    this.reset();
-                });
             }
             
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you soon.');
-                    this.reset();
-                });
+            // Add skills and projects to calculation
+            totalFields += state.skills.length > 0 ? 1 : 0;
+            filledFields += state.skills.length > 0 ? 1 : 0;
+            
+            totalFields += state.projects.length > 0 ? 1 : 0;
+            filledFields += state.projects.length > 0 ? 1 : 0;
+            
+            // Calculate percentage (with a minimum based on step progression)
+            const stepProgress = (state.currentStep - 1) / state.totalSteps * 100;
+            const fieldProgress = totalFields > 0 ? (filledFields / totalFields) * 100 : 0;
+            const progress = Math.min(100, Math.max(stepProgress, fieldProgress));
+            
+            // Update progress bar
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('cv-theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('cv-theme', 'light');
             }
-        });
+        }
+
+        // Template selection
+        function selectTemplate(template) {
+            // Update active template button
+            templateButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-template') === template) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update preview with selected template
+            cvPreview.className = 'cv-preview';
+            cvPreview.classList.add(`template-${template}`);
+            state.selectedTemplate = template;
+            
+            // Save to localStorage
+            saveToLocalStorage();
+        }
+
+        // Skills management
+        function addSkill() {
+            const skill = skillInput.value.trim();
+            
+            if (skill) {
+                // Add to state
+                state.skills.push(skill);
+                
+                // Create skill element
+                const skillElement = document.createElement('div');
+                skillElement.className = 'list-item';
+                skillElement.innerHTML = `
+                    <span>${skill}</span>
+                    <div class="list-actions">
+                        <button type="button" class="list-action-btn remove-skill">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // Add to skills list
+                skillsList.appendChild(skillElement);
+                
+                // Add event listener to remove button
+                const removeBtn = skillElement.querySelector('.remove-skill');
+                removeBtn.addEventListener('click', () => removeSkill(skill, skillElement));
+                
+                // Clear input
+                skillInput.value = '';
+                
+                // Update preview
+                updatePreviewSkills();
+                
+                // Save to localStorage
+                saveToLocalStorage();
+                
+                // Update progress
+                updateProgress();
+            }
+        }
+
+        function removeSkill(skill, element) {
+            // Remove from state
+            const index = state.skills.indexOf(skill);
+            if (index > -1) {
+                state.skills.splice(index, 1);
+            }
+            
+            // Remove from DOM
+            element.remove();
+            
+            // Update preview
+            updatePreviewSkills();
+            
+            // Save to localStorage
+            saveToLocalStorage();
+            
+            // Update progress
+            updateProgress();
+        }
+
+        // Projects management
+        function addProject() {
+            const title = projectTitle.value.trim();
+            const description = projectDescription.value.trim();
+            
+            if (title && description) {
+                // Add to state
+                const project = { title, description };
+                state.projects.push(project);
+                
+                // Create project element
+                const projectElement = document.createElement('div');
+                projectElement.className = 'list-item';
+                projectElement.innerHTML = `
+                    <div>
+                        <strong>${title}</strong>
+                        <p style="margin-top: 5px; font-size: 0.9rem;">${description.substring(0, 80)}${description.length > 80 ? '...' : ''}</p>
+                    </div>
+                    <div class="list-actions">
+                        <button type="button" class="list-action-btn remove-project">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // Add to projects list
+                projectsList.appendChild(projectElement);
+                
+                // Add event listener to remove button
+                const removeBtn = projectElement.querySelector('.remove-project');
+                removeBtn.addEventListener('click', () => removeProject(project, projectElement));
+                
+                // Clear inputs
+                projectTitle.value = '';
+                projectDescription.value = '';
+                
+                // Update preview
+                updatePreviewProjects();
+                
+                // Save to localStorage
+                saveToLocalStorage();
+                
+                // Update progress
+                updateProgress();
+            }
+        }
+
+        function removeProject(project, element) {
+            // Remove from state
+            const index = state.projects.findIndex(p => p.title === project.title && p.description === project.description);
+            if (index > -1) {
+                state.projects.splice(index, 1);
+            }
+            
+            // Remove from DOM
+            element.remove();
+            
+            // Update preview
+            updatePreviewProjects();
+            
+            // Save to localStorage
+            saveToLocalStorage();
+            
+            // Update progress
+            updateProgress();
+        }
+
+        // Update preview functions
+        function updatePreview() {
+            // Update all preview fields with current state
+            for (const field in state.formData) {
+                updatePreviewField(field, state.formData[field]);
+            }
+            
+            // Update skills and projects
+            updatePreviewSkills();
+            updatePreviewProjects();
+        }
+
+        function updatePreviewField(field, value) {
+            const previewElement = document.getElementById(`preview${field.charAt(0).toUpperCase() + field.slice(1)}`);
+            
+            if (previewElement) {
+                if (field === 'linkedin' || field === 'github') {
+                    // For links, show just the username/URL
+                    if (value.includes('//')) {
+                        const url = new URL(value.startsWith('http') ? value : `https://${value}`);
+                        previewElement.textContent = url.hostname + url.pathname;
+                    } else {
+                        previewElement.textContent = value;
+                    }
+                } else {
+                    previewElement.textContent = value || 'Not specified';
+                }
+            }
+        }
+
+        function updatePreviewSkills() {
+            const previewSkills = document.getElementById('previewSkills');
+            previewSkills.innerHTML = '';
+            
+            state.skills.forEach(skill => {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag';
+                skillTag.textContent = skill;
+                previewSkills.appendChild(skillTag);
+            });
+        }
+
+        function updatePreviewProjects() {
+            const previewProjects = document.getElementById('previewProjects');
+            previewProjects.innerHTML = '';
+            
+            state.projects.forEach(project => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'project-item';
+                projectElement.innerHTML = `
+                    <div class="item-header">
+                        <strong>${project.title}</strong>
+                    </div>
+                    <div class="item-details">${project.description}</div>
+                `;
+                previewProjects.appendChild(projectElement);
+            });
+        }
+
+        // Export functions
+        function printCV() {
+            window.print();
+        }
+
+        function downloadAsPDF() {
+            // In a real implementation, this would use a library like jsPDF
+            // For this demo, we'll simulate the download
+            alert('In a full implementation, this would download your CV as a PDF. For now, use the Print function and "Save as PDF" in the print dialog.');
+            
+            // Simulate download for demo purposes
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('Your CV PDF would be generated here. In a real app, you would use a library like jsPDF to create the PDF.'));
+            element.setAttribute('download', 'My-CV.pdf');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // localStorage functions
+        function saveToLocalStorage() {
+            const saveData = {
+                formData: state.formData,
+                skills: state.skills,
+                projects: state.projects,
+                selectedTemplate: state.selectedTemplate,
+                currentStep: state.currentStep
+            };
+            
+            localStorage.setItem('cv-builder-data', JSON.stringify(saveData));
+        }
+
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem('cv-builder-data');
+            
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                // Load form data
+                if (data.formData) {
+                    state.formData = { ...state.formData, ...data.formData };
+                }
+                
+                // Load skills
+                if (data.skills && data.skills.length > 0) {
+                    state.skills = data.skills;
+                }
+                
+                // Load projects
+                if (data.projects && data.projects.length > 0) {
+                    state.projects = data.projects;
+                }
+                
+                // Load template
+                if (data.selectedTemplate) {
+                    state.selectedTemplate = data.selectedTemplate;
+                    selectTemplate(data.selectedTemplate);
+                }
+                
+                // Load current step
+                if (data.currentStep) {
+                    // Navigate to saved step
+                    while (state.currentStep < data.currentStep && state.currentStep < state.totalSteps) {
+                        goToNextStep();
+                    }
+                }
+            }
+            
+            // Load theme preference
+            const savedTheme = localStorage.getItem('cv-theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                const icon = themeToggle.querySelector('i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        function updateFormFields() {
+            // Update form fields with saved data
+            for (const field in state.formData) {
+                const input = document.getElementById(field);
+                if (input) {
+                    input.value = state.formData[field];
+                }
+            }
+            
+            // Update skills list
+            skillsList.innerHTML = '';
+            state.skills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'list-item';
+                skillElement.innerHTML = `
+                    <span>${skill}</span>
+                    <div class="list-actions">
+                        <button type="button" class="list-action-btn remove-skill">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                skillsList.appendChild(skillElement);
+                
+                // Add event listener to remove button
+                const removeBtn = skillElement.querySelector('.remove-skill');
+                removeBtn.addEventListener('click', () => removeSkill(skill, skillElement));
+            });
+            
+            // Update projects list
+            projectsList.innerHTML = '';
+            state.projects.forEach(project => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'list-item';
+                projectElement.innerHTML = `
+                    <div>
+                        <strong>${project.title}</strong>
+                        <p style="margin-top: 5px; font-size: 0.9rem;">${project.description.substring(0, 80)}${project.description.length > 80 ? '...' : ''}</p>
+                    </div>
+                    <div class="list-actions">
+                        <button type="button" class="list-action-btn remove-project">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                projectsList.appendChild(projectElement);
+                
+                // Add event listener to remove button
+                const removeBtn = projectElement.querySelector('.remove-project');
+                removeBtn.addEventListener('click', () => removeProject(project, projectElement));
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
