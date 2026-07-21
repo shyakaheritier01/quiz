@@ -2,372 +2,991 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="MotionCare Physiotherapy Center - Premium physiotherapy and rehabilitation in Kigali, Rwanda. Advanced treatments, expert specialists, and personalized care to help you move without pain." />
-  <title>MotionCare | Premium Physiotherapy Center</title>
-  <!-- Tailwind CSS CDN + Google Fonts + Font Awesome -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GRAND PALACE HOTEL · Luxury Beyond Imagination</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
+    /* ----- GLOBAL RESET & VARIABLES ----- */
     * {
-      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #0F172A;
+      --gold: #D4AF37;
+      --gold-light: #F5D76E;
+      --bg: #F8F9FA;
+      --white: #FFFFFF;
+      --text: #1E293B;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --glass: rgba(255, 255, 255, 0.12);
+      --border-glass: rgba(255, 255, 255, 0.25);
+      --radius: 28px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
     }
     body {
-      background: #fbfefe;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
       overflow-x: hidden;
     }
-    /* Custom glass morphism + animations */
-    .glass-nav {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-      transition: all 0.3s ease;
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
-    .glass-nav.scrolled {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    .hero-gradient {
-      background: radial-gradient(circle at 10% 30%, rgba(56, 189, 248, 0.12), rgba(20, 184, 166, 0.08)), linear-gradient(135deg, #ffffff 0%, #eef9ff 100%);
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 30px;
     }
-    .floating {
-      animation: float 6s ease-in-out infinite;
+    /* ----- LOADING SCREEN ----- */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0px); }
-    }
-    .stat-card {
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-    .stat-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 40px -12px rgba(0, 150, 136, 0.25);
-    }
-    .service-card {
-      transition: all 0.4s ease;
-      backdrop-filter: blur(2px);
-    }
-    .service-card:hover {
-      transform: translateY(-10px) scale(1.01);
-      box-shadow: 0 30px 40px -20px rgba(15, 118, 110, 0.3);
-      border-color: rgba(20, 184, 166, 0.6);
-    }
-    .testimonial-card {
-      transition: all 0.3s ease;
-    }
-    .testimonial-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.1);
-    }
-    .gradient-blob {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.2), rgba(20, 184, 166, 0.05));
-      filter: blur(70px);
-      border-radius: 50%;
-      z-index: 0;
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
       pointer-events: none;
     }
-    .form-glass {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      transition: all 0.2s;
+    .loader-gold {
+      width: 70px;
+      height: 70px;
+      border: 5px solid rgba(212, 175, 55, 0.15);
+      border-top: 5px solid var(--gold);
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
     }
-    .form-glass:focus-within {
-      border-color: #14b8a6;
-      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
-    }
-    .btn-hover {
-      transition: all 0.25s ease;
-    }
-    .btn-hover:hover {
-      transform: translateY(-3px);
-      filter: brightness(1.02);
-      box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.2);
-    }
-    .section-reveal {
+    @keyframes spin { to { transform: rotate(360deg); } }
+    /* ----- SCROLL REVEAL (intersection) ----- */
+    .reveal {
       opacity: 0;
-      transform: translateY(32px);
-      transition: all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transform: translateY(50px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
     }
-    .section-reveal.revealed {
+    .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
-    .hamburger-active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger-active span:nth-child(2) { opacity: 0; }
-    .hamburger-active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-    .mobile-menu {
-      transition: transform 0.3s ease, opacity 0.2s ease;
+    /* ----- STICKY NAVIGATION ----- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: all 0.3s ease;
+      background: transparent;
     }
-    .map-embed {
-      border-radius: 28px;
+    .navbar.scrolled {
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+    .logo span { color: var(--gold); }
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+    .nav-menu a:hover { color: var(--white); }
+    .nav-menu a:hover::after { width: 100%; }
+    .book-now-nav {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--primary) !important;
+      padding: 10px 26px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    }
+    .book-now-nav:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+    }
+    .hamburger {
+      display: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    /* ----- HERO (parallax) ----- */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.3)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .hero-content {
+      max-width: 780px;
+      color: white;
+      padding-top: 80px;
+    }
+    .hero-content h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    .hero-content h1 .gold-text { color: var(--gold); }
+    .hero-content p {
+      font-size: 1.4rem;
+      opacity: 0.9;
+      margin: 24px 0 36px;
+      max-width: 560px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--primary);
+      padding: 16px 42px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(212, 175, 55, 0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      padding: 16px 40px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(6px);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 50px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+    .hero-stats div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.08);
+      padding: 8px 24px 8px 18px;
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stats i { color: var(--gold); }
+    /* ----- BOOKING SEARCH CARD (glass) ----- */
+    .booking-card {
+      margin-top: -70px;
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius);
+      padding: 40px 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      align-items: end;
+    }
+    .booking-card label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .booking-card input, .booking-card select {
+      width: 100%;
+      padding: 14px 12px;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      background: white;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .booking-card input:focus, .booking-card select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    }
+    .booking-card .btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding: 16px;
+    }
+    /* ----- SECTION TITLES ----- */
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .section-sub {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      max-width: 600px;
+      color: #475569;
+      font-size: 1.1rem;
+    }
+    /* ----- ROOMS (cards) ----- */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .room-card {
+      background: white;
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      transition: var(--transition);
     }
-    input, select, textarea {
-      background: rgba(255, 255, 255, 0.85);
+    .room-card:hover {
+      transform: translateY(-14px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+    .room-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .room-card:hover img { transform: scale(1.04); }
+    .room-body {
+      padding: 24px 22px;
+    }
+    .room-body h3 { font-size: 1.5rem; }
+    .room-body .price {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin: 6px 0;
+    }
+    .amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin: 14px 0;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .amenities i { color: var(--gold); margin-right: 4px; }
+    .room-card .btn-primary { width: 100%; justify-content: center; }
+    /* ----- SERVICES ----- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: white;
+      padding: 30px 18px;
+      border-radius: var(--radius);
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 50px rgba(0,0,0,0.06);
+      border-color: var(--gold);
+    }
+    .service-card i {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .service-card h4 { font-size: 1.2rem; }
+    /* ----- RESTAURANT ----- */
+    .restaurant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .food-card {
+      background: white;
+      border-radius: 24px;
+      padding: 18px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.02);
+    }
+    .food-card:hover { transform: scale(1.02); box-shadow: var(--shadow); }
+    .food-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    .food-card .price-tag {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    /* ----- GALLERY (masonry) ----- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      transition: var(--transition);
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.03) rotate(0.5deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    /* lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 30px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    }
+    .lightbox .close-lb {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+    .lightbox .close-lb:hover { opacity: 1; transform: rotate(90deg); }
+    /* ----- STATS / WHY CHOOSE ----- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap: 30px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .stat-item h3 {
+      font-size: 3rem;
+      color: var(--gold);
+    }
+    .stat-item p { font-weight: 500; }
+    /* ----- TESTIMONIALS (carousel) ----- */
+    .testimonial-slider {
+      display: flex;
+      gap: 30px;
+      overflow-x: auto;
+      padding: 20px 4px 40px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .testimonial-slider::-webkit-scrollbar { height: 6px; }
+    .testimonial-slider::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+    .testimonial-card {
+      min-width: 300px;
+      flex: 0 0 auto;
+      background: white;
+      padding: 28px;
+      border-radius: 30px;
+      scroll-snap-align: start;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+      transition: var(--transition);
+    }
+    .testimonial-card:hover { transform: scale(1.01); box-shadow: var(--shadow); }
+    .testimonial-card .stars { color: var(--gold); letter-spacing: 2px; }
+    .testimonial-card img.avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 60px;
+      object-fit: cover;
+      margin-right: 14px;
+    }
+    /* ----- CONTACT / FORM ----- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-top: 30px;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 16px 18px;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 5px rgba(212,175,55,0.1);
+    }
+    .contact-info i { color: var(--gold); width: 30px; }
+    /* ----- FOOTER ----- */
+    .footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 30px;
+      margin-top: 60px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap: 40px;
+    }
+    .footer h4 { color: white; margin-bottom: 18px; }
+    .footer a { display: block; margin: 6px 0; transition: var(--transition); }
+    .footer a:hover { color: var(--gold); padding-left: 6px; }
+    .footer .social i { font-size: 1.6rem; margin-right: 16px; transition: var(--transition); }
+    .footer .social i:hover { color: var(--gold); transform: translateY(-4px); }
+    /* ----- FLOATING WHATSAPP & BACK TO TOP ----- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+      z-index: 900;
+      transition: var(--transition);
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .back-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background: var(--gold);
+      color: var(--primary);
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 30px rgba(212,175,55,0.3);
+      z-index: 900;
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+    .back-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-top:hover { transform: translateY(-6px); }
+    /* ----- MODAL (booking / reserve) ----- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: white;
+      max-width: 500px;
+      width: 100%;
+      padding: 40px;
+      border-radius: 40px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+      position: relative;
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-box .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #94a3b8;
+      transition: var(--transition);
+    }
+    .modal-box .close-modal:hover { color: var(--primary); transform: rotate(90deg); }
+    .modal-box h3 { margin-bottom: 20px; font-size: 2rem; }
+    .modal-box input, .modal-box select, .modal-box textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      margin-bottom: 14px;
+    }
+    .modal-box .btn-primary { width: 100%; justify-content: center; }
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .hero-content h1 { font-size: 3.6rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(15,23,42,0.96);
+        padding: 20px 0;
+        border-radius: 30px;
+        margin-top: 12px;
+        backdrop-filter: blur(12px);
+      }
+      .nav-menu.active { display: flex; }
+      .hamburger { display: block; }
+      .booking-card { grid-template-columns: 1fr; margin-top: 20px; }
+      .hero-content h1 { font-size: 2.8rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 2.2rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-stats { gap: 20px; }
+    }
+    /* ----- scroll progress (optional) ----- */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s;
     }
   </style>
 </head>
-<body class="antialiased">
+<body>
+<!-- LOADER -->
+<div id="loader"><div class="loader-gold"></div></div>
 
-  <!-- Floating Gradient Blobs -->
-  <div class="gradient-blob top-20 left-0 w-96 h-96"></div>
-  <div class="gradient-blob bottom-40 right-0 w-[400px] h-[400px] bg-teal-100/30"></div>
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Sticky Navbar -->
-  <nav id="navbar" class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
-    <div class="container mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-hand-holding-heart text-3xl text-teal-500"></i>
-        <span class="text-2xl font-bold bg-gradient-to-r from-sky-600 to-teal-500 bg-clip-text text-transparent">MotionCare</span>
-      </div>
-      <div class="hidden md:flex space-x-8 text-gray-700 font-medium">
-        <a href="#home" class="hover:text-teal-500 transition">Home</a>
-        <a href="#about" class="hover:text-teal-500 transition">About</a>
-        <a href="#services" class="hover:text-teal-500 transition">Services</a>
-        <a href="#specialists" class="hover:text-teal-500 transition">Specialists</a>
-        <a href="#testimonials" class="hover:text-teal-500 transition">Reviews</a>
-        <a href="#contact" class="hover:text-teal-500 transition">Contact</a>
-      </div>
-      <div class="md:hidden">
-        <button id="menuBtn" class="focus:outline-none w-8 h-8 flex flex-col justify-center items-center space-y-1.5">
-          <span class="block w-6 h-0.5 bg-teal-600 transition-all"></span>
-          <span class="block w-6 h-0.5 bg-teal-600 transition-all"></span>
-          <span class="block w-6 h-0.5 bg-teal-600 transition-all"></span>
-        </button>
-      </div>
-      <div class="hidden md:block">
-        <a href="#appointment" class="bg-gradient-to-r from-sky-500 to-teal-500 px-5 py-2 rounded-full text-white font-semibold shadow-md hover:shadow-xl transition btn-hover">Book Now</a>
-      </div>
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <div class="logo">GRAND <span>PALACE</span></div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#restaurant">Restaurant</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" class="book-now-nav" id="openBookModal">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <h1>Experience Luxury <br><span class="gold-text">Beyond Imagination</span></h1>
+    <p>Stay where elegance meets comfort and unforgettable hospitality.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" id="openBookModal"><i class="fas fa-calendar-check"></i> Book Your Stay</button>
+      <a href="#rooms" class="btn-outline"><i class="fas fa-chevron-right"></i> Explore Rooms</a>
     </div>
-    <!-- mobile menu -->
-    <div id="mobileMenu" class="md:hidden fixed inset-x-0 top-[73px] bg-white/90 backdrop-blur-xl shadow-xl rounded-b-2xl overflow-hidden transition-all duration-300 max-h-0 opacity-0 invisible">
-      <div class="flex flex-col items-center space-y-5 py-6 text-gray-800 font-medium">
-        <a href="#home" class="hover:text-teal-500">Home</a>
-        <a href="#about" class="hover:text-teal-500">About</a>
-        <a href="#services" class="hover:text-teal-500">Services</a>
-        <a href="#specialists" class="hover:text-teal-500">Specialists</a>
-        <a href="#testimonials" class="hover:text-teal-500">Reviews</a>
-        <a href="#contact" class="hover:text-teal-500">Contact</a>
-        <a href="#appointment" class="bg-teal-500 text-white px-6 py-2 rounded-full">Book Now</a>
-      </div>
+    <div class="hero-stats">
+      <div><i class="fas fa-star"></i> ★★★★★ 4.9 Rating</div>
+      <div><i class="fas fa-users"></i> 10,000+ Happy Guests</div>
+      <div><i class="fas fa-award"></i> 25 Years Experience</div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section id="home" class="relative pt-28 md:pt-32 pb-20 md:pb-28 hero-gradient overflow-hidden">
-      <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-12">
-        <div class="flex-1 text-center md:text-left z-10">
-          <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
-            <span class="bg-gradient-to-r from-sky-600 via-teal-500 to-cyan-400 bg-clip-text text-transparent">Helping You</span><br>
-            Move Without Pain
-          </h1>
-          <p class="text-gray-600 text-lg md:text-xl mt-6 max-w-lg mx-auto md:mx-0">Personalized physiotherapy & advanced rehabilitation — regain your strength with Kigali’s most trusted clinic.</p>
-          <div class="flex flex-wrap gap-5 mt-8 justify-center md:justify-start">
-            <a href="#appointment" class="px-8 py-3 bg-gradient-to-r from-sky-500 to-teal-500 text-white font-semibold rounded-full shadow-lg btn-hover flex items-center gap-2"><i class="fas fa-calendar-check"></i> Book Appointment</a>
-            <a href="#contact" class="px-8 py-3 bg-white/80 backdrop-blur-sm border border-sky-200 text-teal-700 font-semibold rounded-full shadow-md hover:shadow-lg btn-hover flex items-center gap-2"><i class="fas fa-headset"></i> Contact Us</a>
-          </div>
-        </div>
-        <div class="flex-1 flex justify-center floating">
-          <div class="relative w-full max-w-md">
-            <div class="rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/30">
-              <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Physiotherapy session" class="w-full h-auto object-cover">
-            </div>
-            <div class="absolute -bottom-5 -left-5 bg-white/60 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white/40">
-              <i class="fas fa-star text-yellow-400"></i> <span class="font-bold">4.98</span> <span class="text-gray-600">(500+ reviews)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- BOOKING SEARCH CARD -->
+<div class="container">
+  <div class="booking-card reveal">
+    <div><label><i class="fas fa-calendar-alt"></i> Check In</label><input type="date" value="2026-07-25" /></div>
+    <div><label><i class="fas fa-calendar-alt"></i> Check Out</label><input type="date" value="2026-07-28" /></div>
+    <div><label><i class="fas fa-user"></i> Adults</label><select><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+    <div><label><i class="fas fa-child"></i> Children</label><select><option>0</option><option selected>1</option><option>2</option></select></div>
+    <div><label><i class="fas fa-door-open"></i> Room Type</label><select><option>Deluxe</option><option>Executive Suite</option><option>Presidential</option><option>Ocean View</option></select></div>
+    <div><button class="btn-primary" id="openBookModal"><i class="fas fa-search"></i> Search Availability</button></div>
+  </div>
+</div>
 
-    <!-- ABOUT SECTION wit counters -->
-    <section id="about" class="py-20 px-6 relative">
-      <div class="container mx-auto max-w-6xl">
-        <div class="text-center mb-12">
-          <span class="text-teal-500 font-semibold uppercase tracking-wide">About motioncare</span>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mt-2">Excellence in Movement</h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-sky-400 to-teal-400 mx-auto mt-4 rounded-full"></div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p class="text-gray-600 text-lg leading-relaxed">MotionCare Physiotherapy Center delivers evidence-based rehabilitation and compassionate care. Our mission is to restore mobility, relieve pain, and enhance life quality through innovative, personalized treatments.</p>
-            <p class="text-gray-600 mt-4">With state-of-the-art technology and a human touch, we empower patients to achieve optimal function.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div class="stat-card bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-md border border-sky-100">
-              <i class="fas fa-user-injured text-4xl text-sky-500"></i>
-              <h3 class="text-3xl font-extrabold text-gray-800 mt-3 counter" data-target="3200">0</h3>
-              <p class="text-gray-500">Patients Treated</p>
-            </div>
-            <div class="stat-card bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-md border border-teal-100">
-              <i class="fas fa-calendar-alt text-4xl text-teal-500"></i>
-              <h3 class="text-3xl font-extrabold text-gray-800 mt-3 counter" data-target="15">0</h3>
-              <p class="text-gray-500">Years Experience</p>
-            </div>
-            <div class="stat-card bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-md border border-sky-100">
-              <i class="fas fa-chart-line text-4xl text-cyan-500"></i>
-              <h3 class="text-3xl font-extrabold text-gray-800 mt-3 counter" data-target="98">0</h3>
-              <p class="text-gray-500">Recovery Rate %</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- ROOMS -->
+<section id="rooms" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— luxury accommodations</span><h2 class="section-title">Our Rooms</h2></div>
+  <div class="rooms-grid">
+    <div class="room-card reveal"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&h=400&fit=crop" alt="Deluxe"/><div class="room-body"><h3>Deluxe Room</h3><div class="price">$290</div><p>Elegant city view, king bed.</p><div class="amenities"><span><i class="fas fa-wifi"></i> WiFi</span><span><i class="fas fa-utensils"></i> Breakfast</span><span><i class="fas fa-tv"></i> TV</span><span><i class="fas fa-swimmer"></i> Pool</span><span><i class="fas fa-snowflake"></i> AC</span></div><button class="btn-primary openRoomModal" data-room="Deluxe Room">Book Now</button></div></div>
+    <div class="room-card reveal"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop" alt="Executive"/><div class="room-body"><h3>Executive Suite</h3><div class="price">$490</div><p>Spacious living area, city skyline.</p><div class="amenities"><span><i class="fas fa-wifi"></i> WiFi</span><span><i class="fas fa-utensils"></i> Breakfast</span><span><i class="fas fa-tv"></i> TV</span><span><i class="fas fa-swimmer"></i> Pool</span><span><i class="fas fa-snowflake"></i> AC</span></div><button class="btn-primary openRoomModal" data-room="Executive Suite">Book Now</button></div></div>
+    <div class="room-card reveal"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&h=400&fit=crop" alt="Presidential"/><div class="room-body"><h3>Presidential Suite</h3><div class="price">$890</div><p>Panoramic views, butler service.</p><div class="amenities"><span><i class="fas fa-wifi"></i> WiFi</span><span><i class="fas fa-utensils"></i> Breakfast</span><span><i class="fas fa-tv"></i> TV</span><span><i class="fas fa-swimmer"></i> Pool</span><span><i class="fas fa-snowflake"></i> AC</span></div><button class="btn-primary openRoomModal" data-room="Presidential Suite">Book Now</button></div></div>
+    <div class="room-card reveal"><img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600&h=400&fit=crop" alt="Family"/><div class="room-body"><h3>Family Room</h3><div class="price">$350</div><p>Two connecting rooms, garden view.</p><div class="amenities"><span><i class="fas fa-wifi"></i> WiFi</span><span><i class="fas fa-utensils"></i> Breakfast</span><span><i class="fas fa-tv"></i> TV</span><span><i class="fas fa-swimmer"></i> Pool</span><span><i class="fas fa-snowflake"></i> AC</span></div><button class="btn-primary openRoomModal" data-room="Family Room">Book Now</button></div></div>
+    <div class="room-card reveal"><img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&h=400&fit=crop" alt="Ocean View"/><div class="room-body"><h3>Ocean View</h3><div class="price">$520</div><p>Private balcony, sea breeze.</p><div class="amenities"><span><i class="fas fa-wifi"></i> WiFi</span><span><i class="fas fa-utensils"></i> Breakfast</span><span><i class="fas fa-tv"></i> TV</span><span><i class="fas fa-swimmer"></i> Pool</span><span><i class="fas fa-snowflake"></i> AC</span></div><button class="btn-primary openRoomModal" data-room="Ocean View">Book Now</button></div></div>
+    <div class="room-card reveal"><img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600&h=400&fit=crop" alt="Honeymoon"/><div class="room-body"><h3>Honeymoon Suite</h3><div class="price">$620</div><p>Romantic setting, jacuzzi, sea view.</p><div class="amenities"><span><i class="fas fa-wifi"></i> WiFi</span><span><i class="fas fa-utensils"></i> Breakfast</span><span><i class="fas fa-tv"></i> TV</span><span><i class="fas fa-swimmer"></i> Pool</span><span><i class="fas fa-snowflake"></i> AC</span></div><button class="btn-primary openRoomModal" data-room="Honeymoon Suite">Book Now</button></div></div>
+  </div>
+</section>
 
-    <!-- SERVICES SECTION -->
-    <section id="services" class="py-20 bg-gradient-to-b from-white to-sky-50/50">
-      <div class="container mx-auto px-6 max-w-7xl">
-        <div class="text-center mb-14">
-          <span class="text-teal-500 font-semibold uppercase">what we offer</span>
-          <h2 class="text-4xl md:text-5xl font-bold">Advanced Therapy Services</h2>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- 6 cards -->
-          <div class="service-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/40 hover:border-teal-300 transition-all text-center"><i class="fas fa-futbol text-5xl text-sky-500 mb-4"></i><h3 class="text-2xl font-bold">Sports Injury Recovery</h3><p class="text-gray-500 mt-2">Specialized return-to-sport protocols & advanced biomechanics.</p></div>
-          <div class="service-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/40 hover:border-teal-300 transition-all text-center"><i class="fas fa-spine text-5xl text-teal-500 mb-4"></i><h3 class="text-2xl font-bold">Back & Neck Therapy</h3><p class="text-gray-500 mt-2">Evidence-based spinal decompression and posture correction.</p></div>
-          <div class="service-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/40 hover:border-teal-300 transition-all text-center"><i class="fas fa-hand-holding-heart text-5xl text-sky-500 mb-4"></i><h3 class="text-2xl font-bold">Massage Therapy</h3><p class="text-gray-500 mt-2">Therapeutic deep tissue & myofascial release.</p></div>
-          <div class="service-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/40 hover:border-teal-300 transition-all text-center"><i class="fas fa-dumbbell text-5xl text-teal-500 mb-4"></i><h3 class="text-2xl font-bold">Rehabilitation Programs</h3><p class="text-gray-500 mt-2">Personalized plans for postural & mobility restoration.</p></div>
-          <div class="service-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/40 hover:border-teal-300 transition-all text-center"><i class="fas fa-procedures text-5xl text-sky-500 mb-4"></i><h3 class="text-2xl font-bold">Post-Surgery Recovery</h3><p class="text-gray-500 mt-2">Accelerate healing with safe, guided rehab.</p></div>
-          <div class="service-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/40 hover:border-teal-300 transition-all text-center"><i class="fas fa-brain text-5xl text-teal-500 mb-4"></i><h3 class="text-2xl font-bold">Neurological Therapy</h3><p class="text-gray-500 mt-2">Neuro-rehab for stroke, balance & coordination.</p></div>
-        </div>
-      </div>
-    </section>
+<!-- SERVICES -->
+<section id="services" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— premium amenities</span><h2 class="section-title">Hotel Services</h2></div>
+  <div class="services-grid">
+    <div class="service-card reveal"><i class="fas fa-shuttle-van"></i><h4>Airport Pickup</h4><p>Luxury transfer</p></div>
+    <div class="service-card reveal"><i class="fas fa-spa"></i><h4>Spa & Wellness</h4><p>Rejuvenate</p></div>
+    <div class="service-card reveal"><i class="fas fa-swimmer"></i><h4>Infinity Pool</h4><p>Panoramic</p></div>
+    <div class="service-card reveal"><i class="fas fa-utensils"></i><h4>Luxury Restaurant</h4><p>Michelin star</p></div>
+    <div class="service-card reveal"><i class="fas fa-users"></i><h4>Conference Hall</h4><p>Premium events</p></div>
+    <div class="service-card reveal"><i class="fas fa-dumbbell"></i><h4>Gym</h4><p>State-of-art</p></div>
+    <div class="service-card reveal"><i class="fas fa-ring"></i><h4>Wedding Venue</h4><p>Dream weddings</p></div>
+    <div class="service-card reveal"><i class="fas fa-concierge-bell"></i><h4>24/7 Room Service</h4><p>Around the clock</p></div>
+    <div class="service-card reveal"><i class="fas fa-parking"></i><h4>Free Parking</h4><p>Valet available</p></div>
+    <div class="service-card reveal"><i class="fas fa-wifi"></i><h4>Fast WiFi</h4><p>1 Gbps</p></div>
+    <div class="service-card reveal"><i class="fas fa-briefcase"></i><h4>Business Center</h4><p>Executive</p></div>
+    <div class="service-card reveal"><i class="fas fa-tshirt"></i><h4>Laundry</h4><p>Premium care</p></div>
+  </div>
+</section>
 
-    <!-- SPECIALISTS SECTION -->
-    <section id="specialists" class="py-20">
-      <div class="container mx-auto px-6 max-w-7xl">
-        <div class="text-center mb-14"><span class="text-teal-500 font-semibold">Experts Team</span><h2 class="text-4xl md:text-5xl font-bold">Meet Our Specialists</h2></div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white rounded-3xl shadow-xl overflow-hidden group transition-all hover:-translate-y-2 hover:shadow-2xl"><div class="h-64 bg-sky-100 flex items-center justify-center"><i class="fas fa-user-md text-7xl text-teal-600"></i></div><div class="p-6 text-center"><h3 class="text-2xl font-bold">Dr. Aline Uwase</h3><p class="text-teal-500 font-medium">Sports Physiotherapist</p><p class="text-gray-500">12+ years experience | FIFA certified</p><div class="flex justify-center gap-3 mt-4 text-gray-500"><i class="fab fa-linkedin-in hover:text-teal-500 cursor-pointer"></i><i class="fab fa-twitter hover:text-teal-500 cursor-pointer"></i><i class="fas fa-envelope hover:text-teal-500 cursor-pointer"></i></div></div></div>
-          <div class="bg-white rounded-3xl shadow-xl overflow-hidden group transition-all hover:-translate-y-2 hover:shadow-2xl"><div class="h-64 bg-teal-50 flex items-center justify-center"><i class="fas fa-user-nurse text-7xl text-sky-500"></i></div><div class="p-6 text-center"><h3 class="text-2xl font-bold">Dr. Eric Mugisha</h3><p class="text-teal-500 font-medium">Orthopedic Manual Therapy</p><p class="text-gray-500">9 years | OMPT Diploma</p><div class="flex justify-center gap-3 mt-4 text-gray-500"><i class="fab fa-linkedin-in hover:text-teal-500"></i><i class="fab fa-twitter hover:text-teal-500"></i><i class="fas fa-envelope hover:text-teal-500"></i></div></div></div>
-          <div class="bg-white rounded-3xl shadow-xl overflow-hidden group transition-all hover:-translate-y-2 hover:shadow-2xl"><div class="h-64 bg-cyan-50 flex items-center justify-center"><i class="fas fa-hand-holding-medical text-7xl text-teal-500"></i></div><div class="p-6 text-center"><h3 class="text-2xl font-bold">Clarisse Iradukunda</h3><p class="text-teal-500 font-medium">Neurological Rehab Expert</p><p class="text-gray-500">7 years | Stroke & Vestibular rehab</p><div class="flex justify-center gap-3 mt-4 text-gray-500"><i class="fab fa-linkedin-in hover:text-teal-500"></i><i class="fab fa-instagram hover:text-teal-500"></i><i class="fas fa-envelope hover:text-teal-500"></i></div></div></div>
-        </div>
-      </div>
-    </section>
+<!-- RESTAURANT -->
+<section id="restaurant" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— culinary excellence</span><h2 class="section-title">Restaurant</h2></div>
+  <div class="restaurant-grid">
+    <div class="food-card reveal"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=250&fit=crop" alt="Breakfast"/><h4>Breakfast</h4><div class="price-tag">$24</div></div>
+    <div class="food-card reveal"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=250&fit=crop" alt="Lunch"/><h4>Lunch</h4><div class="price-tag">$38</div></div>
+    <div class="food-card reveal"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=250&fit=crop" alt="Dinner"/><h4>Dinner</h4><div class="price-tag">$56</div></div>
+    <div class="food-card reveal"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=250&fit=crop" alt="Desserts"/><h4>Desserts</h4><div class="price-tag">$16</div></div>
+    <div class="food-card reveal"><img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=400&h=250&fit=crop" alt="Drinks"/><h4>Drinks</h4><div class="price-tag">$14</div></div>
+  </div>
+  <div style="text-align:center;margin:30px 0;"><button class="btn-primary" id="openTableModal"><i class="fas fa-utensil-spoon"></i> Reserve Table</button></div>
+</section>
 
-    <!-- APPOINTMENT SECTION -->
-    <section id="appointment" class="py-20 relative bg-gradient-to-br from-sky-50 via-white to-teal-50/30">
-      <div class="container mx-auto px-6 max-w-5xl">
-        <div class="text-center mb-12"><h2 class="text-4xl font-bold">Reserve Your Appointment</h2><p class="text-gray-600 mt-2">We’ll contact you within 2 hours to confirm.</p></div>
-        <div class="form-glass rounded-3xl p-8 md:p-10 shadow-2xl">
-          <form id="bookingForm" class="grid md:grid-cols-2 gap-6">
-            <input type="text" placeholder="Full Name" class="border-0 rounded-xl px-5 py-3 bg-white/70 focus:ring-2 focus:ring-teal-300 outline-none" required>
-            <input type="tel" placeholder="Phone Number" class="border-0 rounded-xl px-5 py-3 bg-white/70 focus:ring-2 focus:ring-teal-300 outline-none" required>
-            <input type="email" placeholder="Email Address" class="border-0 rounded-xl px-5 py-3 bg-white/70 focus:ring-2 focus:ring-teal-300 outline-none" required>
-            <select class="border-0 rounded-xl px-5 py-3 bg-white/70 focus:ring-teal-300 outline-none">
-              <option>Sports Injury Recovery</option><option>Back & Neck Therapy</option><option>Massage Therapy</option><option>Rehabilitation Programs</option><option>Post-Surgery Recovery</option><option>Neurological Therapy</option>
-            </select>
-            <input type="date" class="border-0 rounded-xl px-5 py-3 bg-white/70" required>
-            <textarea rows="2" placeholder="Additional message (optional)" class="border-0 rounded-xl px-5 py-3 bg-white/70 md:col-span-2"></textarea>
-            <div class="md:col-span-2 flex justify-center"><button type="submit" class="bg-gradient-to-r from-sky-500 to-teal-500 text-white text-lg font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all btn-hover w-full sm:w-auto"><i class="fas fa-calendar-alt mr-2"></i> Request Appointment</button></div>
-          </form>
-          <div id="formSuccess" class="hidden mt-4 text-center text-green-600 font-medium bg-green-50 p-3 rounded-xl">✓ Appointment request sent! We'll reach you soon.</div>
-        </div>
-      </div>
-    </section>
+<!-- GALLERY -->
+<section id="gallery" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— visual stories</span><h2 class="section-title">Photo Gallery</h2></div>
+  <div class="gallery-grid" id="galleryGrid">
+    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop" alt="hotel" />
+    <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400&h=300&fit=crop" alt="pool" />
+    <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop" alt="room" />
+    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&h=300&fit=crop" alt="suite" />
+    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&h=300&fit=crop" alt="lobby" />
+    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400&h=300&fit=crop" alt="spa" />
+    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=300&fit=crop" alt="restaurant" />
+    <img src="https://images.unsplash.com/photo-1559599189-44a1b3d8f20b?w=400&h=300&fit=crop" alt="event" />
+    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop" alt="exterior" />
+    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400&h=300&fit=crop" alt="conference" />
+    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400&h=300&fit=crop" alt="family" />
+    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=300&fit=crop" alt="executive" />
+  </div>
+</section>
 
-    <!-- TESTIMONIALS SECTION -->
-    <section id="testimonials" class="py-20 bg-white">
-      <div class="container mx-auto px-6 max-w-7xl"><div class="text-center mb-12"><span class="text-teal-500 font-semibold">Patient stories</span><h2 class="text-4xl font-bold">Trusted by Hundreds</h2></div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="testimonial-card bg-gray-50 p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><i class="fas fa-user-circle text-5xl text-teal-300"></i><div><h4 class="font-bold">Ishimwe Grace</h4><div class="text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><p class="mt-4 text-gray-600">“Incredible care! After my knee injury, I am running again. The team is world-class.”</p></div>
-        <div class="testimonial-card bg-gray-50 p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><i class="fas fa-user-circle text-5xl text-sky-300"></i><div><h4 class="font-bold">Niyonsaba David</h4><div class="text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><p class="mt-4 text-gray-600">“Back pain vanished after 4 sessions. MotionCare changed my life. Highly recommend!”</p></div>
-        <div class="testimonial-card bg-gray-50 p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><i class="fas fa-female text-5xl text-teal-300"></i><div><h4 class="font-bold">Mukamana Solange</h4><div class="text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div></div><p class="mt-4 text-gray-600">“Modern facility, caring specialists. The recovery program gave me my mobility back!”</p></div>
-      </div></div>
-    </section>
+<!-- WHY CHOOSE / STATS -->
+<section class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— excellence in numbers</span><h2 class="section-title">Why Choose Us</h2></div>
+  <div class="stats-grid">
+    <div class="stat-item reveal"><h3 class="counter" data-target="25">0</h3><p>Years Experience</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="350">0</h3><p>Luxury Rooms</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="150">0</h3><p>Employees</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="10000">0</h3><p>Satisfied Guests</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="98">0</h3><p>% Satisfaction</p></div>
+  </div>
+</section>
 
-    <!-- CONTACT SECTION + MAP + WHATSAPP -->
-    <section id="contact" class="py-20 bg-gradient-to-t from-sky-100/30 via-white to-white">
-      <div class="container mx-auto px-6 max-w-6xl"><div class="text-center mb-12"><h2 class="text-4xl font-bold">Visit Our Center</h2><p class="text-gray-600">We’re located in Kigali, Rwanda — modern accessibility for all.</p></div>
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="space-y-6"><div class="flex items-start gap-4"><i class="fas fa-map-marker-alt text-2xl text-teal-500 mt-1"></i><span>KN 3 Ave, Kacyiru, Kigali - Rwanda</span></div><div class="flex items-start gap-4"><i class="fas fa-phone-alt text-2xl text-teal-500"></i><span>+250 781917428</span></div><div class="flex items-start gap-4"><i class="fas fa-envelope text-2xl text-teal-500"></i><span>hello@motioncare.rw</span></div><div><a href="https://wa.me/250788123456" target="_blank" class="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-green-600 transition"> <i class="fab fa-whatsapp text-xl"></i> WhatsApp Chat</a></div></div>
-        <div class="map-embed rounded-2xl shadow-2xl"><iframe class="w-full h-64 md:h-72 rounded-2xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.475240071209!2d30.089531414254058!3d-1.944361398870013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca76e6e9a1b7b%3A0x2f7b3e3b8e2e2f9d!2sKigali%20Heights!5e0!3m2!1sen!2srw!4v1712134567890!5m2!1sen!2srw" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-      </div></div>
-    </section>
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— guest stories</span><h2 class="section-title">Testimonials</h2></div>
+  <div class="testimonial-slider" id="testimonialSlider">
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"Absolute perfection. The service and views are unmatched."</p><div style="display:flex;align-items:center;margin-top:12px;"><img class="avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar"/><div><strong>Emma W.</strong> <span style="color:var(--gold);">🇬🇧</span></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"A true palace. Every detail is luxurious and welcoming."</p><div style="display:flex;align-items:center;margin-top:12px;"><img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar"/><div><strong>James L.</strong> <span style="color:var(--gold);">🇺🇸</span></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"The honeymoon suite was a dream. Can't wait to return."</p><div style="display:flex;align-items:center;margin-top:12px;"><img class="avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="avatar"/><div><strong>Sophia M.</strong> <span style="color:var(--gold);">🇫🇷</span></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"World-class restaurant and impeccable staff."</p><div style="display:flex;align-items:center;margin-top:12px;"><img class="avatar" src="https://randomuser.me/api/portraits/men/75.jpg" alt="avatar"/><div><strong>David R.</strong> <span style="color:var(--gold);">🇩🇪</span></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"The infinity pool at sunset is pure magic."</p><div style="display:flex;align-items:center;margin-top:12px;"><img class="avatar" src="https://randomuser.me/api/portraits/women/90.jpg" alt="avatar"/><div><strong>Olivia K.</strong> <span style="color:var(--gold);">🇦🇺</span></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"Best hotel experience in my life. Highly recommend."</p><div style="display:flex;align-items:center;margin-top:12px;"><img class="avatar" src="https://randomuser.me/api/portraits/men/52.jpg" alt="avatar"/><div><strong>Carlos G.</strong> <span style="color:var(--gold);">🇪🇸</span></div></div></div>
+  </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-10">
-      <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8"><div><i class="fas fa-hand-holding-heart text-2xl text-teal-400"></i><h3 class="text-xl font-bold mt-2">MotionCare</h3><p class="text-gray-400 text-sm">Advanced physiotherapy with a human touch.</p></div><div><h4 class="font-semibold mb-2">Quick Links</h4><ul class="space-y-1 text-gray-400 text-sm"><li><a href="#home" class="hover:text-teal-400">Home</a></li><li><a href="#services" class="hover:text-teal-400">Services</a></li><li><a href="#specialists" class="hover:text-teal-400">Specialists</a></li></ul></div><div><h4 class="font-semibold mb-2">Legal</h4><ul class="text-gray-400 text-sm"><li>Privacy Policy</li><li>Terms of Service</li></ul></div><div><h4 class="font-semibold mb-2">Follow Us</h4><div class="flex space-x-4 text-2xl"><i class="fab fa-facebook hover:text-teal-400 cursor-pointer"></i><i class="fab fa-instagram hover:text-teal-400 cursor-pointer"></i><i class="fab fa-linkedin hover:text-teal-400"></i></div></div></div>
-      <div class="text-center text-gray-500 text-sm mt-8 border-t border-gray-800 pt-6">© 2025 MotionCare Physiotherapy Center — Kigali, Rwanda. Healing motion, restoring lives.</div>
-    </footer>
-  </main>
+<!-- ABOUT -->
+<section id="about" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— our story</span><h2 class="section-title">About Grand Palace</h2></div>
+  <div style="max-width:740px;background:white;padding:40px;border-radius:40px;box-shadow:var(--shadow);margin:20px 0;">
+    <p style="font-size:1.2rem;">For 25 years, Grand Palace has been the epitome of luxury hospitality. Nestled in the heart of the city, we blend timeless elegance with modern comfort. Our mission: to create unforgettable experiences for every guest.</p>
+    <div style="display:flex;gap:40px;margin-top:24px;flex-wrap:wrap;"><div><strong>Mission</strong><p>Deliver exceptional service</p></div><div><strong>Vision</strong><p>Global luxury benchmark</p></div><div><strong>Values</strong><p>Integrity, excellence, warmth</p></div></div>
+  </div>
+</section>
 
-  <script>
-    // Navbar transparency on scroll, mobile menu, counters, reveal animation, form alert 
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => { if (window.scrollY > 20) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
-    
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      menuBtn.classList.toggle('hamburger-active');
-      if (mobileMenu.classList.contains('max-h-0')) {
-        mobileMenu.classList.remove('max-h-0', 'opacity-0', 'invisible');
-        mobileMenu.classList.add('max-h-96', 'opacity-100', 'visible');
-      } else {
-        mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
-        mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
-      }
-    });
-    document.querySelectorAll('.mobile-menu a, .mobile-menu .bg-teal-500').forEach(link => link.addEventListener('click', () => {
-      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
-      menuBtn.classList.remove('hamburger-active');
-    }));
-    
-    // animated counters
-    const counters = document.querySelectorAll('.counter');
-    const startCounters = () => {
-      counters.forEach(counter => {
-        const updateCount = () => {
-          const target = +counter.getAttribute('data-target');
-          const current = +counter.innerText;
-          const increment = target / 60;
-          if (current < target) {
-            counter.innerText = Math.ceil(current + increment);
-            setTimeout(updateCount, 20);
-          } else counter.innerText = target;
-        };
-        updateCount();
-      });
-    };
-    const observerOptions = { threshold: 0.3 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) { startCounters(); observer.unobserve(entry.target); } });
-    }, observerOptions);
-    const aboutSection = document.querySelector('#about .grid');
-    if (aboutSection) observer.observe(aboutSection);
-    
-    // scroll reveal sections
-    const revealElements = document.querySelectorAll('section');
+<!-- SPECIAL OFFERS & EVENTS (combined) -->
+<section class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— exclusive</span><h2 class="section-title">Special Offers</h2></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;">
+    <div class="service-card reveal"><i class="fas fa-tags"></i><h4>Weekend Discount</h4><p>Save 20%</p><button class="btn-primary openOfferModal" style="margin-top:10px;padding:10px 20px;font-size:0.9rem;">Book Offer</button></div>
+    <div class="service-card reveal"><i class="fas fa-heart"></i><h4>Honeymoon Package</h4><p>Romantic getaway</p><button class="btn-primary openOfferModal" style="margin-top:10px;padding:10px 20px;font-size:0.9rem;">Book Offer</button></div>
+    <div class="service-card reveal"><i class="fas fa-users"></i><h4>Family Package</h4><p>Kids stay free</p><button class="btn-primary openOfferModal" style="margin-top:10px;padding:10px 20px;font-size:0.9rem;">Book Offer</button></div>
+    <div class="service-card reveal"><i class="fas fa-briefcase"></i><h4>Business Package</h4><p>Meeting + stay</p><button class="btn-primary openOfferModal" style="margin-top:10px;padding:10px 20px;font-size:0.9rem;">Book Offer</button></div>
+  </div>
+  <div style="margin-top:40px;" class="reveal"><span class="section-sub">— events</span><h2 class="section-title">Plan Your Event</h2></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px;">
+    <div class="service-card reveal"><i class="fas fa-ring"></i><h4>Wedding</h4><button class="btn-primary openEventModal" style="padding:10px 20px;font-size:0.9rem;">Reserve</button></div>
+    <div class="service-card reveal"><i class="fas fa-users"></i><h4>Conference</h4><button class="btn-primary openEventModal" style="padding:10px 20px;font-size:0.9rem;">Reserve</button></div>
+    <div class="service-card reveal"><i class="fas fa-birthday-cake"></i><h4>Birthday</h4><button class="btn-primary openEventModal" style="padding:10px 20px;font-size:0.9rem;">Reserve</button></div>
+    <div class="service-card reveal"><i class="fas fa-handshake"></i><h4>Business Meeting</h4><button class="btn-primary openEventModal" style="padding:10px 20px;font-size:0.9rem;">Reserve</button></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container" style="padding-top:80px;">
+  <div class="reveal"><span class="section-sub">— get in touch</span><h2 class="section-title">Contact</h2></div>
+  <div class="contact-grid">
+    <div class="contact-form">
+      <input type="text" placeholder="Full Name" /><input type="email" placeholder="Email" /><input type="tel" placeholder="Phone" /><textarea rows="4" placeholder="Message"></textarea>
+      <button class="btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </div>
+    <div class="contact-info"><i class="fas fa-map-pin"></i> 123 Luxury Ave, City<br><i class="fas fa-phone"></i> +1 800 555 0199<br><i class="fas fa-envelope"></i> palace@grand.com<br><i class="fas fa-clock"></i> 24/7 Concierge<br><div class="social" style="margin-top:20px;"><i class="fab fa-instagram"></i><i class="fab fa-facebook"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><h4>GRAND PALACE</h4><p>Luxury redefined since 2000.</p></div>
+    <div><h4>Quick Links</h4><a href="#rooms">Rooms</a><a href="#services">Services</a><a href="#gallery">Gallery</a></div>
+    <div><h4>Services</h4><a href="#">Spa</a><a href="#">Dining</a><a href="#">Events</a></div>
+    <div><h4>Newsletter</h4><input type="email" placeholder="Your email" style="padding:12px;border-radius:40px;border:none;width:100%;"/><button style="margin-top:10px;background:var(--gold);color:var(--primary);padding:10px 20px;border-radius:40px;border:none;font-weight:600;">Subscribe</button></div>
+  </div>
+  <div style="text-align:center;padding-top:40px;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px;">© 2026 Grand Palace Hotel. All rights reserved.</div>
+</footer>
+
+<!-- FLOATING WHATSAPP & BACK TOP -->
+<a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<button class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox"><span class="close-lb">&times;</span><img id="lightboxImg" src="" alt="full"/></div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="bookModal"><div class="modal-box"><span class="close-modal" data-close="bookModal">&times;</span><h3>Book Room</h3><input type="text" placeholder="Full Name" /><input type="email" placeholder="Email" /><input type="tel" placeholder="Phone" /><input type="date" /><input type="time" /><select><option>1 Guest</option><option>2 Guests</option><option>3 Guests</option></select><textarea placeholder="Special request"></textarea><button class="btn-primary">Confirm Reservation</button></div></div>
+<div class="modal-overlay" id="tableModal"><div class="modal-box"><span class="close-modal" data-close="tableModal">&times;</span><h3>Reserve Table</h3><input type="text" placeholder="Full Name" /><input type="email" placeholder="Email" /><input type="tel" placeholder="Phone" /><input type="date" /><input type="time" /><select><option>2 Guests</option><option>4 Guests</option><option>6+ Guests</option></select><textarea placeholder="Special request"></textarea><button class="btn-primary">Confirm Reservation</button></div></div>
+<div class="modal-overlay" id="eventModal"><div class="modal-box"><span class="close-modal" data-close="eventModal">&times;</span><h3>Reserve Event Hall</h3><input type="text" placeholder="Full Name" /><input type="email" placeholder="Email" /><input type="tel" placeholder="Phone" /><input type="date" /><input type="time" /><select><option>Wedding</option><option>Conference</option><option>Birthday</option><option>Business</option></select><textarea placeholder="Special request"></textarea><button class="btn-primary">Confirm Reservation</button></div></div>
+<div class="modal-overlay" id="offerModal"><div class="modal-box"><span class="close-modal" data-close="offerModal">&times;</span><h3>Book Special Offer</h3><input type="text" placeholder="Full Name" /><input type="email" placeholder="Email" /><input type="tel" placeholder="Phone" /><input type="date" /><select><option>Weekend Discount</option><option>Honeymoon Package</option><option>Family Package</option><option>Business Package</option></select><button class="btn-primary">Confirm Reservation</button></div></div>
+
+<script>
+  (function(){
+    // ----- LOADER -----
+    window.addEventListener('load', function(){ document.getElementById('loader').classList.add('hidden'); });
+
+    // ----- SCROLL REVEAL (Intersection Observer) -----
+    const reveals = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); });
-    }, { threshold: 0.2 });
-    revealElements.forEach(section => { section.classList.add('section-reveal'); revealObserver.observe(section); });
-    
-    // booking form alert
-    const form = document.getElementById('bookingForm');
-    const successDiv = document.getElementById('formSuccess');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      successDiv.classList.remove('hidden');
-      form.reset();
-      setTimeout(() => successDiv.classList.add('hidden'), 4000);
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ----- STICKY NAV + PROGRESS BAR -----
+    const navbar = document.getElementById('navbar');
+    const progress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', function(){
+      const y = window.scrollY;
+      navbar.classList.toggle('scrolled', y > 70);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (y / docHeight) * 100 + '%';
+      document.getElementById('backTop').classList.toggle('visible', y > 500);
     });
-    // initiate first load animation for hero
-    document.querySelector('#home').classList.add('revealed');
-  </script>
+
+    // ----- HAMBURGER -----
+    document.getElementById('hamburger').addEventListener('click', function(){
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
+    // ----- COUNTER ANIMATION (with Intersection) -----
+    const counters = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-target'));
+          let current = 0;
+          const step = Math.ceil(target / 60);
+          const timer = setInterval(() => {
+            current += step;
+            if(current >= target){ el.textContent = target; clearInterval(timer); }
+            else el.textContent = current;
+          }, 25);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // ----- LIGHTBOX GALLERY -----
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    document.querySelectorAll('#galleryGrid img').forEach(img => {
+      img.addEventListener('click', function(){
+        lbImg.src = this.src;
+        lb.classList.add('active');
+      });
+    });
+    lb.querySelector('.close-lb').addEventListener('click', ()=> lb.classList.remove('active'));
+    lb.addEventListener('click', (e) => { if(e.target === lb) lb.classList.remove('active'); });
+
+    // ----- MODALS (open/close) -----
+    function openModal(id){ document.getElementById(id).classList.add('active'); }
+    function closeModal(id){ document.getElementById(id).classList.remove('active'); }
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', function(){ closeModal(this.dataset.close); });
+    });
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', function(e){ if(e.target === this) closeModal(this.id); });
+    });
+    document.getElementById('openBookModal').addEventListener('click', (e) => { e.preventDefault(); openModal('bookModal'); });
+    document.querySelectorAll('.openRoomModal').forEach(btn => {
+      btn.addEventListener('click', function(){ openModal('bookModal'); });
+    });
+    document.getElementById('openTableModal').addEventListener('click', ()=> openModal('tableModal'));
+    document.querySelectorAll('.openEventModal').forEach(btn => btn.addEventListener('click', ()=> openModal('eventModal')));
+    document.querySelectorAll('.openOfferModal').forEach(btn => btn.addEventListener('click', ()=> openModal('offerModal')));
+
+    // ----- BACK TO TOP -----
+    document.getElementById('backTop').addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ----- SMOOTH NAV LINKS (prevent jump) -----
+    document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('navMenu').classList.remove('active');
+      });
+    });
+
+    // ----- PARALLAX effect (hero) already via CSS fixed -----
+
+    // ----- RIPPLE BUTTON effect (simple) -----
+    document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+      btn.addEventListener('click', function(e){
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);width:60px;height:60px;left:'+(e.clientX-rect.left-30)+'px;top:'+(e.clientY-rect.top-30)+'px;transform:scale(0);animation:rippleAnim 0.6s ease-out;pointer-events:none;';
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        setTimeout(()=> ripple.remove(), 700);
+      });
+    });
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `@keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }`;
+    document.head.appendChild(styleSheet);
+  })();
+</script>
 </body>
 </html>
